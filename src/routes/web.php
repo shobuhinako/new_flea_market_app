@@ -28,4 +28,5 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function(){
     Route::get('/mypage', [UserController::class, 'showMypage'])->name('show.mypage');
     Route::get('/mypage/profile_change', [UserController::class, 'showProfile'])->name('show.profile');
+    Route::put('/mypage/profile_change', [UserController::class, 'editProfile'])->name('edit.profile');
 });

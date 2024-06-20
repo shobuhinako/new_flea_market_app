@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('css')
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 </head>
 
 <body>

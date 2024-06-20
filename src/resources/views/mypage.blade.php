@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    <div class="top__content">テストさん</div>
+    <div class="top__content">{{ $user->name }}</div>
     <form class="edit__profile" action="{{ route('show.profile') }}" method="get">
     @csrf
         <button class="edit__profile-button">プロフィールを編集</button>
