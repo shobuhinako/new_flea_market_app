@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DisplayItemController;
 
 
 /*
@@ -29,4 +30,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/mypage', [UserController::class, 'showMypage'])->name('show.mypage');
     Route::get('/mypage/profile_change', [UserController::class, 'showProfile'])->name('show.profile');
     Route::put('/mypage/profile_change', [UserController::class, 'editProfile'])->name('edit.profile');
+    Route::get('/display_item', [DisplayItemController::class, 'showDisplayItem'])->name('show.display');
+    Route::post('/display_item', [DisplayItemController::class, 'store'])->name('create.item');
 });

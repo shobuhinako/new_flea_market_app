@@ -57,7 +57,12 @@
                     </li>
                 @endif
 
-                <li class="header__menu-item">出品</li>
+                <li class="header__menu-item">
+                    <form class="header__menu-button" action="{{ route('show.display') }}" method="get">
+                    @csrf
+                        <button class="display__item-button">出品</button>
+                    </form>
+                </li>
             </ul>
         </nav>
     </header>
