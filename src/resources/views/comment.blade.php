@@ -47,27 +47,5 @@
             </a>
             @endauth
         </div>
-
-        <form class="purchase__button">
-        @csrf
-            <input type="submit" value="購入する">
-        </form>
-
-        <h3 class="item__description">商品説明</h3>
-            <div class="item__description-content">
-                {{ $item->description }}
-            </div>
-        </div>
-
-        <h3 class="item__information">商品情報</h3>
-        <table class="item__information-table">
-            <tr>
-                <th>カテゴリー<th>
-                <td>{{ $item->category }}</td>
-            </tr>
-            <tr>
-                <th>商品の状態</th>
-                <td>{{ $item->condition }}</td>
-            </tr>
-        </table>
+    </div>
 @endsection

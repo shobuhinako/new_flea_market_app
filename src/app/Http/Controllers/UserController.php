@@ -7,12 +7,14 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\EditProfileRequest;
+use App\Models\Item;
 
 class UserController extends Controller
 {
     public function showMypage() {
         $user = Auth::user();
-        return view ('mypage', compact('user'));
+        $items = Item::where('user_id', $user->id)->get();
+        return view ('mypage', compact('user', 'items'));
     }
 
     public function showProfile() {

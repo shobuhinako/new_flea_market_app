@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DisplayItemController;
+use App\Http\Controllers\ItemController;
 
 
 /*
@@ -26,10 +27,12 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('show.logi
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::get('/detail/{id}', [ItemController::class, 'show'])->name('item.detail');
 Route::middleware('auth')->group(function(){
     Route::get('/mypage', [UserController::class, 'showMypage'])->name('show.mypage');
     Route::get('/mypage/profile_change', [UserController::class, 'showProfile'])->name('show.profile');
     Route::put('/mypage/profile_change', [UserController::class, 'editProfile'])->name('edit.profile');
     Route::get('/display_item', [DisplayItemController::class, 'showDisplayItem'])->name('show.display');
     Route::post('/display_item', [DisplayItemController::class, 'store'])->name('create.item');
+    Route::post('/detail/{id}', [ItemController::class, 'favorite'])->name('favorite');
 });
