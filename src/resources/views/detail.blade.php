@@ -35,7 +35,7 @@
 
         <div class="comment">
             @auth
-            <form class="comment__content" action="" method="get">
+            <form class="comment__content" action="{{ route('show.comment', ['item_id' => $item->id]) }}" method="get">
             @csrf
                 <button class="comment__button" type="submit">
                     <i class="fa-regular fa-comment"></i>
