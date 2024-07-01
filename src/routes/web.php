@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\StripeController;
 
 
 /*
@@ -35,4 +36,14 @@ Route::middleware('auth')->group(function(){
     Route::get('/detail/comment/{item_id}', [ItemController::class, 'showComment'])->name('show.comment');
     Route::post('/detail/comment/{item_id}', [ItemController::class, 'create'])->name('create.comment');
     Route::delete('/detail/comment/{item_id}/{comment_id}', [ItemController::class, 'destroy'])->name('delete.comment');
+    Route::get('/confirm_purchase/{item_id}', [ItemController::class, 'showPurchaseForm'])->name('show.purchase');
+    Route::post('/confirm_purchase/{item_id}', [StripeController::class, 'charge'])->name('charge');
+    // Route::post('/change-payment', [StripeController::class, 'changePayment'])->name('change.payment');
+    // Route::post('/update-payment', [StripeController::class, 'updatePayment'])->name('update.payment');
+    Route::get('/address__change', [UserController::class, 'address'])->name('show.address');
+    Route::post('/create-payment-intent', [StripeController::class, 'createPaymentIntent'])->name('create.payment.intent');
+    Route::post('/address__change', [UserController::class, 'updateAddress'])->name('update.address');
+    Route::get('/payment-form', [StripeController::class, 'showPaymentForm'])->name('show.payment.form');
+    Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
+    Route::get('/payment_completion', [StripeController::class, 'success'])->name('payment.complete');
 });

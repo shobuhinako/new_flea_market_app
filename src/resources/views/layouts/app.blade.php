@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('css')
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>

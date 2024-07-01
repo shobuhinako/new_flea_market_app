@@ -48,7 +48,7 @@
             @endauth
         </div>
 
-        <form class="purchase__button">
+        <form class="purchase__button" action="{{ route('show.purchase', ['item_id' => $item->id]) }}" method="get">
         @csrf
             <input type="submit" value="購入する">
         </form>

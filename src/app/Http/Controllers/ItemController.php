@@ -89,4 +89,11 @@ class ItemController extends Controller
         }
         return redirect()->back()->with('success', 'コメントを削除しました。');
     }
+
+    public function showPurchaseForm ($item_id)
+    {
+        $item = Item::findOrFail($item_id);
+
+        return view ('purchase', compact('item', 'item_id'));
+    }
 }

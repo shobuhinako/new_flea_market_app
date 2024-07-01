@@ -56,4 +56,21 @@ class UserController extends Controller
 
         return back()->with('success', 'プロフィールが更新されました。');
     }
+
+    public function address()
+    {
+        return view ('address');
+    }
+
+    public function updateAddress(Request $request)
+    {
+        $user = Auth::user();
+
+        $user->post = $request->post;
+        $user->address = $request->address;
+        $user->building = $request->building;
+        $user->save();
+
+        return redirect()->back()->with('success', '住所が更新されました。');
+    }
 }
