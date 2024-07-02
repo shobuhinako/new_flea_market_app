@@ -8,13 +8,20 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\EditProfileRequest;
 use App\Models\Item;
+use App\Models\SoldItem;
 
 class UserController extends Controller
 {
     public function showMypage() {
         $user = Auth::user();
-        $items = Item::where('user_id', $user->id)->get();
-        return view ('mypage', compact('user', 'items'));
+
+        // 出品した商品を取得
+        $listedItems = Item::where('user_id', $user->id)->get();
+
+        // 購入した商品を取得
+        $purchasedItems = SoldItem::where('user_id', $user->id)->with('item')->get()->pluck('item');
+
+        return view ('mypage', compact('user', 'listedItems', 'purchasedItems'));
     }
 
     public function showProfile() {
