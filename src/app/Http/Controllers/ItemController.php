@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Comment;
+use App\Models\Favorite;
+use App\Models\SoldItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,8 +15,18 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $items = Item::all();
-        return view ('index', ['items' => $items]);
+        $userId = auth()->id();
+
+        // ユーザーが購入したアイテムのカテゴリを取得
+        $purchasedCategories = SoldItem::where('user_id', $userId)->with('item')->get()->pluck('item.category')->unique();
+
+        // おすすめアイテムをカテゴリから取得
+        $recommendedItems = Item::whereIn('category', $purchasedCategories)->get();
+
+        // マイリストに登録されたアイテムを取得
+        $favoriteItems = Favorite::where('user_id', $userId)->with('item')->get()->pluck('item');
+
+        return view('index', compact('recommendedItems', 'favoriteItems'));
     }
 
     public function show($id)

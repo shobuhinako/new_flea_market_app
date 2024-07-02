@@ -13,4 +13,9 @@ class SoldItem extends Model
         'item_id',
         'user_id',
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
 }
