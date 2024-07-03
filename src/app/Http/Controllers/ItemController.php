@@ -15,6 +15,7 @@ class ItemController extends Controller
 {
     public function index()
     {
+        if (Auth::check()) {
         $userId = auth()->id();
 
         // ユーザーが購入したアイテムのカテゴリを取得
@@ -25,6 +26,12 @@ class ItemController extends Controller
 
         // マイリストに登録されたアイテムを取得
         $favoriteItems = Favorite::where('user_id', $userId)->with('item')->get()->pluck('item');
+
+        } else {
+            // 全商品を取得
+            $recommendedItems = Item::all();
+            $favoriteItems = collect(); // 空のコレクションを作成
+        }
 
         return view('index', compact('recommendedItems', 'favoriteItems'));
     }

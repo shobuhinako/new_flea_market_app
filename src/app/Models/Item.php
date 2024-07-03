@@ -40,4 +40,9 @@ class Item extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function isSoldOut()
+    {
+        return SoldItem::where('item_id', $this->id)->exists();
+    }
 }
