@@ -72,6 +72,9 @@
         <div class="item__name">
             <label>商品名<input type="text" name="name" /></label>
         </div>
+        <div class="brand__name">
+            <label>ブランド<input type="text" name="brand" /></label>
+        </div>
         <div class="item__description-content">
             <label>商品の説明<input type="textarea" name="description" /></label>
         </div>

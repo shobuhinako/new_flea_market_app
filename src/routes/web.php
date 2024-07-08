@@ -26,6 +26,9 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/', [ItemController::class, 'index'])->name('index');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/detail/{id}', [ItemController::class, 'show'])->name('item.detail');
+Route::get('/search', [ItemController::class, 'search'])->name('search');
+
+
 Route::middleware('auth')->group(function(){
     Route::get('/mypage', [UserController::class, 'showMypage'])->name('show.mypage');
     Route::get('/mypage/profile_change', [UserController::class, 'showProfile'])->name('show.profile');
@@ -46,4 +49,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/payment-form', [StripeController::class, 'showPaymentForm'])->name('show.payment.form');
     Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
     Route::get('/payment_completion', [StripeController::class, 'success'])->name('payment.complete');
+    Route::post('/payment/send-bank-transfer-info', [StripeController::class, 'sendBankTransferInfo'])->name('payment.sendBankTransferInfo');
+    Route::post('/webhook/stripe', [StripeController::class, 'handleWebhook'])->name('webhook.stripe');
 });

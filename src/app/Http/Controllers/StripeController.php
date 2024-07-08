@@ -9,6 +9,10 @@ use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Stripe\Customer;
 use Stripe\Charge;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BankTransferInfo;
+use Stripe\Webhook;
+use Stripe\Exception\SignatureVerificationException;
 
 class StripeController extends Controller
 {
@@ -107,7 +111,7 @@ class StripeController extends Controller
         $itemId = $request->input('item_id');
         $item = Item::findOrFail($itemId);
 
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey(config('services.stripe.st_key'));
 
         $charge = Charge::create([
             'amount' => $item->price,
@@ -129,5 +133,75 @@ class StripeController extends Controller
     public function success()
     {
         return view ('payment-completion');
+    }
+
+    public function sendBankTransferInfo(Request $request)
+    {
+        $itemId = $request->input('item_id');
+        $item = Item::findOrFail($itemId);
+
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $email = $request->email;
+
+        Mail::to($email)->send(new BankTransferInfo($item));
+
+        // 顧客の作成または取得
+        $customer = Customer::create([
+            'email' => $email,
+        ]);
+
+        // 支払いインテントの作成
+        Stripe::setApiKey(config('services.stripe.st_key'));
+
+        $paymentIntent = PaymentIntent::create([
+            'amount' => $item->price,
+            'currency' => 'jpy',
+            'payment_method_types' => ['customer_balance'],
+            'customer' => $customer->id,
+        ]);
+
+        SoldItem::create([
+            'item_id' => $request->input('item_id'),
+            'user_id' => auth()->id(),
+        ]);
+
+        return view('payment-completion');
+    }
+
+    public function handleWebhook(Request $request)
+    {
+        $payload = $request->getContent();
+        $sigHeader = $request->header('Stripe-Signature');
+        $endpointSecret = env('STRIPE_WEBHOOK_SECRET');
+
+        try {
+            $event = Webhook::constructEvent(
+                $payload, $sigHeader, $endpointSecret
+            );
+        } catch (SignatureVerificationException $e) {
+            Log::error('Stripe webhook signature verification failed.', ['error' => $e->getMessage()]);
+            return response()->json(['error' => 'Invalid signature'], 400);
+        }
+
+        switch ($event['type']) {
+            case 'payment_intent.succeeded':
+                $paymentIntent = $event['data']['object'];
+                // 成功時の処理
+                Log::info('PaymentIntent succeeded', ['payment_intent' => $paymentIntent]);
+                break;
+            case 'payment_intent.payment_failed':
+                $paymentIntent = $event['data']['object'];
+                // 失敗時の処理
+                Log::warning('PaymentIntent failed', ['payment_intent' => $paymentIntent]);
+                break;
+            default:
+                Log::info('Received unknown event type', ['event' => $event]);
+                break;
+        }
+
+        return response()->json(['status' => 'success'], 200);
     }
 }

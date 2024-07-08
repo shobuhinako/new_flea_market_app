@@ -18,6 +18,9 @@ class ItemController extends Controller
         if (Auth::check()) {
         $userId = auth()->id();
 
+        // 全ての商品を取得
+        $allItems = Item::all();
+
         // ユーザーが購入したアイテムのカテゴリを取得
         $purchasedCategories = SoldItem::where('user_id', $userId)->with('item')->get()->pluck('item.category')->unique();
 
@@ -29,11 +32,12 @@ class ItemController extends Controller
 
         } else {
             // 全商品を取得
+            $allItems = Item::all();
             $recommendedItems = Item::all();
             $favoriteItems = collect(); // 空のコレクションを作成
         }
 
-        return view('index', compact('recommendedItems', 'favoriteItems'));
+        return view('index', compact('allItems', 'recommendedItems', 'favoriteItems'));
     }
 
     public function show($id)
@@ -53,7 +57,7 @@ class ItemController extends Controller
         $imageName = $user->id . '_image' . time() . '.' . $request->file('image')->extension();
         $request->file('image')->storeAs('public/images', $imageName);
 
-        $form = $request->only('category', 'condition', 'name', 'description', 'price');
+        $form = $request->only('category', 'condition', 'name', 'brand', 'description', 'price');
         $form['image_path'] = $imageName;
         $form['user_id'] = $user->id;
 
@@ -115,4 +119,22 @@ class ItemController extends Controller
 
         return view ('purchase', compact('item', 'item_id'));
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('search-box');
+
+        // 検索クエリを実行
+        $searchResults = Item::where('name', 'like', '%' . $keyword . '%')
+            ->orWhere('description', 'like', '%' . $keyword . '%')
+            ->orWhere('brand', 'like', '%' . $keyword . '%')
+            ->get();
+
+        // セッションに検索結果とキーワードを保存
+        session()->flash('searchResults', $searchResults);
+        session()->flash('keyword', $keyword);
+
+        return redirect()->route('index');
+    }
+
 }

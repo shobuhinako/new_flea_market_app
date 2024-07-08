@@ -19,7 +19,8 @@ class CreateItemsTable extends Migration
             $table->string('category');
             $table->string('condition');
             $table->string('name', 40);
-            $table->string('description', 1000);
+            $table->string('brand', 50)->nullable();
+            $table->text('description', 1000);
             $table->integer('price');
             $table->string('image_path');
             $table->timestamps();

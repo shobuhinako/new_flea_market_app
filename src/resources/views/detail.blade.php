@@ -11,7 +11,9 @@
 
     <div class="item__detail">
         <h2 class="item__name">{{ $item->name }}</h2>
-        <div class="brand__name">ブランド名</div>
+        @if($item->brand)
+            <div class="brand__name">{{ $item->brand }}</div>
+        @endif
         <div class="price">￥{{ $item->price }}(値段)</div>
         @if($item->isSoldOut())
             <p class="card-text text-danger">売り切れ</p>

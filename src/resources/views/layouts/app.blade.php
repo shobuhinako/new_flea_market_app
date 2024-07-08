@@ -19,9 +19,9 @@
             <a href="{{ route('index') }}">COACHTECH</a>
         </h1>
 
-        <form class="search__form">
+        <form class="search__form" action="{{ route('search') }}" method="get">
         @csrf
-            <input type="text" name="search-box" value="{{ old('text') }}" />
+            <input type="text" name="search-box" placeholder="何をお探しですか？" value="{{ old('text') }}" />
         </form>
 
         <nav class="header__menu">
