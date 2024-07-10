@@ -80,4 +80,31 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', '住所が更新されました。');
     }
+
+    public function showAdminMypage() {
+        $user = Auth::user();
+
+        return view ('admin-mypage', compact('user'));
+    }
+
+    public function showAdmin(){
+        return view ('create-admin');
+    }
+
+    public function createAdmin(Request $request)
+    {
+        $form = $request->only('name', 'email', 'password');
+        $user = User::create([
+            'role_id' => 1,
+            'name' => $form['name'],
+            'email' => $form['email'],
+            'password' => bcrypt($form['password']),
+        ]);
+
+        session()->flash('success_message', '管理者を作成しました。');
+
+        return redirect('/create/admin');
+    }
+
+
 }

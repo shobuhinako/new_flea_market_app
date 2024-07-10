@@ -51,4 +51,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/payment_completion', [StripeController::class, 'success'])->name('payment.complete');
     Route::post('/payment/send-bank-transfer-info', [StripeController::class, 'sendBankTransferInfo'])->name('payment.sendBankTransferInfo');
     Route::post('/webhook/stripe', [StripeController::class, 'handleWebhook'])->name('webhook.stripe');
+    Route::get('/admin-mypage', [UserController::class, 'showAdminMypage'])->name('show.admin.mypage');
+    Route::get('/create/admin', [UserController::class, 'showAdmin'])->name('show.admin');
+    Route::post('/create/admin', [UserController::class, 'createAdmin'])->name('create.admin');
 });

@@ -44,10 +44,17 @@
 
                 @if(Auth::check())
                     <li class="header__menu-item">
-                        <form class="header__menu-button" action="{{ route('show.mypage') }}" method="get">
-                        @csrf
-                            <button class="mypage__button">マイページ</button>
-                        </form>
+                        @if(Auth::user()->role_id == 1)
+                            <form class="header__menu-button" action="{{ route('show.admin.mypage') }}" method="get">
+                            @csrf
+                                <button class="mypage__button">マイページ</button>
+                            </form>
+                        @else
+                            <from class="header__menu-button" action="{{ route('show.mypage') }}" method="get">
+                            @csrf
+                                <button class="mypage__button">マイページ</button>
+                            </form>
+                        @endif
                     </li>
                 @else
                     <li class="header__menu-item">
@@ -58,12 +65,14 @@
                     </li>
                 @endif
 
-                <li class="header__menu-item">
-                    <form class="header__menu-button" action="{{ route('show.display') }}" method="get">
-                    @csrf
-                        <button class="display__item-button">出品</button>
-                    </form>
-                </li>
+                @if(Auth::check() && Auth::user()->role_id != 1)
+                    <li class="header__menu-item">
+                        <form class="header__menu-button" action="{{ route('show.display') }}" method="get">
+                        @csrf
+                            <button class="display__item-button">出品</button>
+                        </form>
+                    </li>
+                @endif
             </ul>
         </nav>
     </header>
