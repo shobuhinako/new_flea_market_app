@@ -7,12 +7,13 @@
     @if(session()->has('success'))
             <p>{{ session('success') }}</p>
     @endif
-    <form action="{{ route('send-notification') }}" method="post">
+    <form action="{{ route('send.notification') }}" method="post">
     @csrf
     <div>
         <p>宛先</p>
         <select name="destination">
             <option value="all">全員</option>
+            <option value="admin">管理者</option>
             <option value="user">ユーザー</option>
         </select>
     </div>

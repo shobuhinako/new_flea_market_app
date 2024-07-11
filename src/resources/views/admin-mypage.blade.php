@@ -16,7 +16,7 @@
     </div>
 
     <div class="send__notification">
-        <form class="notification__form-show" action="" method="get">
+        <form class="notification__form-show" action="{{ route('show.send.notification') }}" method="get">
         @csrf
             <input type="submit" value="お知らせメール作成">
         </form>

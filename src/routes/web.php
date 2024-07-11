@@ -54,4 +54,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin-mypage', [UserController::class, 'showAdminMypage'])->name('show.admin.mypage');
     Route::get('/create/admin', [UserController::class, 'showAdmin'])->name('show.admin');
     Route::post('/create/admin', [UserController::class, 'createAdmin'])->name('create.admin');
+    Route::get('/send-notification', [UserController::class, 'showNotification'])->name('show.send.notification');
+    Route::post('/send-notification', [UserController::class, 'sendNotification'])->name('send.notification');
 });

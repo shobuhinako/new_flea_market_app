@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\EditProfileRequest;
 use App\Models\Item;
 use App\Models\SoldItem;
+use App\Mail\SendEmail;
+use App\Mail\Notification;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -106,5 +109,29 @@ class UserController extends Controller
         return redirect('/create/admin');
     }
 
+    public function showNotification(){
+        return view('send-notification');
+    }
 
+    public function sendNotification(Request $request) {
+    $destination = $request->input('destination');
+    $message = $request->input('message');
+
+    $users = collect();
+
+    if ($destination === 'all') {
+        $users = User::all();
+    } elseif ($destination === 'admin') {
+        $users = User::where('role_id', 1)->get();
+    } elseif ($destination === 'user') {
+        #rolesを持っていないuserを取得
+        $users = User::whereNull('role_id')->get();
+    }
+
+    foreach ($users as $user) {
+        Mail::to($user->email)->send(new SendEmail($user, $message));
+    }
+
+    return back()->with('success', 'お知らせを送信しました');
+    }
 }
