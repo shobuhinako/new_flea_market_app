@@ -67,9 +67,9 @@ class UserController extends Controller
         return back()->with('success', 'プロフィールが更新されました。');
     }
 
-    public function address()
+    public function address($item_id)
     {
-        return view ('address');
+        return view ('address', ['item_id' => $item_id]);
     }
 
     public function updateAddress(Request $request)
@@ -81,7 +81,7 @@ class UserController extends Controller
         $user->building = $request->building;
         $user->save();
 
-        return redirect()->back()->with('success', '住所が更新されました。');
+        return redirect()->route('show.purchase', ['item_id' => $request->item_id]);
     }
 
     public function showAdminMypage() {

@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/confirm_purchase/{item_id}', [StripeController::class, 'charge'])->name('charge');
     // Route::post('/change-payment', [StripeController::class, 'changePayment'])->name('change.payment');
     // Route::post('/update-payment', [StripeController::class, 'updatePayment'])->name('update.payment');
-    Route::get('/address__change', [UserController::class, 'address'])->name('show.address');
+    Route::get('/address__change/{item_id}', [UserController::class, 'address'])->name('show.address');
     Route::post('/create-payment-intent', [StripeController::class, 'createPaymentIntent'])->name('create.payment.intent');
     Route::post('/address__change', [UserController::class, 'updateAddress'])->name('update.address');
     Route::get('/payment-form', [StripeController::class, 'showPaymentForm'])->name('show.payment.form');

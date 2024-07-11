@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const selectedPaymentMethod = document.getElementById('selected-payment-method');
     const displaySelectedPaymentMethod = document.getElementById('display-selected-payment-method');
     const hiddenPaymentMethodInput = document.getElementById('hidden-payment-method');
+    const submitButton = document.getElementById('submit-button');
+
+    const post = document.getElementById('user-post').value;
+    const address = document.getElementById('user-address').value;
 
     changePaymentMethodButton.addEventListener('click', function() {
         paymentMethodSelection.style.display = 'block';
@@ -43,6 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
         hiddenPaymentMethodInput.value = selectedMethod;
         paymentMethodSelection.style.display = 'none';
     });
+
+    if (!post || !address) {
+        submitButton.disabled = true;
+    } else {
+        submitButton.disabled = false;
+    }
 });
 
 

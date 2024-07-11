@@ -24,10 +24,29 @@
                 <button type="button" id="confirm-payment-method">決定</button>
             </div>
         <h3 class="shipping__address">配送先</h3>
-            <form class="shipping__address-change" action="{{ route('show.address') }}" method="get">
-            @csrf
-                <input type="submit" name="link" value="変更する">
-            </form>
+        @if ($post && $address)
+            <div class="address__details">
+                <p>〒{{ $post }}</p>
+                <p>{{ $address }}</p>
+                @if ($building)
+                    <p>{{ $building }}</p>
+                @endif
+                <form class="shipping__address-change" action="{{ route('show.address', ['item_id' => $item->id]) }}" method="get">
+                @csrf
+                    <input type="submit" name="link" value="変更する">
+                </form>
+            </div>
+        @else
+            <div class="address__registration">
+                <p>配送先が登録されていません。配送先を登録してください。</p>
+                <form class="shipping__address-change" action="{{ route('show.address') }}" method="get">
+                @csrf
+                    <input type="submit" name="link" value="変更する">
+                </form>
+            </div>
+        @endif
+        <input type="hidden" id="user-post" value="{{ $post }}">
+        <input type="hidden" id="user-address" value="{{ $address }}">
     </div>
 
     <div class="purchase__confirmation">
@@ -51,7 +70,7 @@
                     </tr>
                 </table>
             </div>
-            <button id="submit-button">購入する</button>
+            <button id="submit-button" @if(!$post || !$address) disabled @endif>購入する</button>
         </form>
     </div>
 

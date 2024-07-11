@@ -115,9 +115,15 @@ class ItemController extends Controller
 
     public function showPurchaseForm ($item_id)
     {
+        $user = Auth::user();
         $item = Item::findOrFail($item_id);
 
-        return view ('purchase', compact('item', 'item_id'));
+        return view ('purchase', [
+            'item' => $item,
+            'post' => $user->post,
+            'address' => $user->address,
+            'building' => $user->building,
+        ]);
     }
 
     public function search(Request $request)
