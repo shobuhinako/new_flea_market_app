@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\BankTransferInfo;
 use Stripe\Webhook;
 use Stripe\Exception\SignatureVerificationException;
+use Illuminate\Support\Facades\Auth;
 
 class StripeController extends Controller
 {
@@ -140,11 +141,8 @@ class StripeController extends Controller
         $itemId = $request->input('item_id');
         $item = Item::findOrFail($itemId);
 
-        $request->validate([
-            'email' => 'required|email',
-        ]);
-
-        $email = $request->email;
+        $user = Auth::user();
+        $email = $user->email;
 
         Mail::to($email)->send(new BankTransferInfo($item));
 

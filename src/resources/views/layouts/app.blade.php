@@ -50,7 +50,7 @@
                                 <button class="mypage__button">マイページ</button>
                             </form>
                         @else
-                            <from class="header__menu-button" action="{{ route('show.mypage') }}" method="get">
+                            <form class="header__menu-button" action="{{ route('show.mypage') }}" method="get">
                             @csrf
                                 <button class="mypage__button">マイページ</button>
                             </form>

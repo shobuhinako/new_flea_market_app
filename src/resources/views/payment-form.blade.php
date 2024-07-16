@@ -23,6 +23,7 @@
     @elseif($paymentMethod === 'bank_transfer')
         <div id="bank-transfer-info">
             <p>以下の振込先にお振込みください。</p>
+            <p>ご登録のメールアドレスに振込先情報をお送りします</p>
             <p>金融機関コード: 1234</p>
             <p>銀行名: いろは銀行</p>
             <p>支店コード: 001</p>
@@ -32,11 +33,7 @@
             <p>口座名義: カ）コーチテックフリマ</p>
         </div>
         <form action="{{ route('payment.sendBankTransferInfo') }}" method="post">
-            @csrf
-            <div class="form-group">
-                <label for="email">メールアドレス</label>
-                <input type="email" name="email" class="form-control" required>
-            </div>
+        @csrf
             <input type="hidden" name="item_id" value="{{ $item->id }}">
             <button type="submit" class="btn btn-primary">購入する</button>
         </form>

@@ -8,8 +8,11 @@ use App\Models\Item;
 use App\Models\Comment;
 use App\Models\Favorite;
 use App\Models\SoldItem;
+use App\Models\TransactionComment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Events\CommentPosted;
+use App\Notifications\TransactionCompletedNotification;
 
 class ItemController extends Controller
 {
@@ -142,5 +145,61 @@ class ItemController extends Controller
 
         return redirect()->route('index');
     }
+
+    public function showTransactionStatus ($item_id)
+    {
+        $soldItems = SoldItem::with(['user'])->findOrFail($item_id);
+        $item = Item::with(['soldItems.user', 'user'])->findOrFail($item_id);
+        $comments = TransactionComment::where('item_id', $item_id)->with('user')->get();
+        // $transaction = TransactionComment::where('item_id', $item_id)->first();
+
+        return view ('transaction-status', compact('item', 'comments', 'soldItems'));
+    }
+
+    public function storeTransactionComment(Request $request)
+    {
+        $request->validate([
+            'content' => 'required|string|max:500',
+            'item_id' => 'required|exists:items,id',
+        ]);
+
+        $transaction = SoldItem::where('item_id', $request->item_id)->firstOrFail();
+
+        $comment = TransactionComment::create([
+            'user_id' => Auth::id(),
+            'item_id' => $request->item_id,
+            'transaction_id' => $transaction->id,
+            'content' => $request->content,
+        ]);
+
+        // コメントが投稿されたことを通知するイベントを発火
+        event(new CommentPosted($comment));
+
+        return back()->with('success', 'コメントが送信されました。');
+    }
+
+    public function completeTransaction(Request $request, $item_id)
+    {
+        $item = Item::findOrFail($item_id);
+        $user = Auth::user();
+
+        $soldItem = SoldItem::where('item_id', $item_id)->firstOrFail();
+
+        if ($user->id == $item->user_id) {
+            $soldItem->is_completed_by_seller = true;
+            $notificationUser = $soldItem->user;
+        } else {
+            $soldItem->is_completed_by_buyer = true;
+            $notificationUser = $item->user;
+        }
+
+        $soldItem->save();
+
+        $notificationUser->notify(new TransactionCompletedNotification($user));
+
+        return back()->with('success', '取引完了が通知されました');
+    }
+
+
 
 }

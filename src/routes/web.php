@@ -56,4 +56,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/create/admin', [UserController::class, 'createAdmin'])->name('create.admin');
     Route::get('/send-notification', [UserController::class, 'showNotification'])->name('show.send.notification');
     Route::post('/send-notification', [UserController::class, 'sendNotification'])->name('send.notification');
+    Route::get('/transaction-status/{item_id}', [ItemController::class, 'showTRansactionStatus'])->name('show.transaction.status');
+    Route::post('/transaction-comments', [ItemController::class, 'storeTransactionComment'])->name('store.transaction.comment');
+    Route::post('/transaction/complete{item_id}', [ItemController::class, 'completeTransaction'])->name('transaction.complete');
 });

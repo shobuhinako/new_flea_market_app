@@ -33,6 +33,13 @@
                     </div>
                 </div>
             </div>
+            <div class="confirm__transaction-status">
+                <form class="transaction__status" action="{{ route('show.transaction.status', ['item_id' => $item->id]) }}" method="get">
+                @csrf
+                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                    <input type="submit" value="取引状況確認">
+                </form>
+            </div>
         @endforeach
     </div>
 
@@ -49,6 +56,13 @@
                         <p class="card-text">{{ $item->price }}円</p>
                     </div>
                 </div>
+            </div>
+            <div class="confirm__transaction-status">
+                <form class="transaction__status" action="{{ route('show.transaction.status', ['item_id' => $item->id]) }}" method="get">
+                @csrf
+                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                    <input type="submit" value="取引状況確認">
+                </form>
             </div>
         @endforeach
     </div>

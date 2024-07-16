@@ -44,6 +44,12 @@ class Item extends Model
 
     public function isSoldOut()
     {
-        return SoldItem::where('item_id', $this->id)->exists();
+        // return SoldItem::where('item_id', $this->id)->exists();
+        return $this->soldItems()->exists();
+    }
+
+    public function soldItems()
+    {
+        return $this->hasMany(SoldItem::class);
     }
 }
