@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Events\CommentPosted;
 use App\Notifications\TransactionCompletedNotification;
+use Illuminate\Support\Facades\Cache;
 
 class ItemController extends Controller
 {
@@ -34,10 +35,10 @@ class ItemController extends Controller
         $favoriteItems = Favorite::where('user_id', $userId)->with('item')->get()->pluck('item');
 
         } else {
-            // 全商品を取得
             $allItems = Item::all();
-            $recommendedItems = Item::all();
             $favoriteItems = collect(); // 空のコレクションを作成
+            $viewedItems = Cache::get('viewed_items', collect());
+            $recommendedItems = $viewedItems;
         }
 
         return view('index', compact('allItems', 'recommendedItems', 'favoriteItems'));
@@ -46,6 +47,18 @@ class ItemController extends Controller
     public function show($id)
     {
         $item = Item::findOrFail($id);
+
+       // ユーザーがログインしていない場合にのみキャッシュに保存する
+        if (!Auth::check()) {
+            // ユーザーが閲覧した商品を取得
+            $viewedItems = Cache::get('viewed_items', collect());
+
+            // 新しい商品を追加
+            $viewedItems->push($item);
+
+            // キャッシュに保存 (有効期限を設定)
+            Cache::put('viewed_items', $viewedItems, 60 * 60); // 1 hour expiration
+    }
         return view('detail', compact('item'));
     }
 
