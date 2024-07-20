@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Events\CommentPosted;
 use App\Notifications\TransactionCompletedNotification;
 use Illuminate\Support\Facades\Cache;
+use App\Models\Category;
+use App\Models\Condition;
 
 class ItemController extends Controller
 {
@@ -46,7 +48,7 @@ class ItemController extends Controller
 
     public function show($id)
     {
-        $item = Item::findOrFail($id);
+        $item = Item::with(['category', 'condition'])->findOrFail($id);
 
        // ユーザーがログインしていない場合にのみキャッシュに保存する
         if (!Auth::check()) {
@@ -64,7 +66,10 @@ class ItemController extends Controller
 
     public function showDisplayItem()
     {
-        return view ('display');
+        $categories = Category::all();
+        $conditions = Condition::all();
+
+        return view ('display', compact('categories', 'conditions'));
     }
 
     public function store(Request $request) {
@@ -73,9 +78,16 @@ class ItemController extends Controller
         $imageName = $user->id . '_image' . time() . '.' . $request->file('image')->extension();
         $request->file('image')->storeAs('public/images', $imageName);
 
-        $form = $request->only('category', 'condition', 'name', 'brand', 'description', 'price');
-        $form['image_path'] = $imageName;
-        $form['user_id'] = $user->id;
+        $form = [
+        'category_id' => $request->category,
+        'condition_id' => $request->condition,
+        'name' => $request->name,
+        'brand' => $request->brand,
+        'description' => $request->description,
+        'price' => $request->price,
+        'image_path' => $imageName,
+        'user_id' => $user->id,
+        ];
 
 
         $item = Item::create($form);

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Item extends Model
 {
@@ -12,8 +13,8 @@ class Item extends Model
 
     protected $fillable = [
         'user_id',
-        'category',
-        'condition',
+        'category_id',
+        'condition_id',
         'name',
         'brand',
         'description',
@@ -51,5 +52,15 @@ class Item extends Model
     public function soldItems()
     {
         return $this->hasMany(SoldItem::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
     }
 }

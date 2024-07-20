@@ -29,40 +29,22 @@
             <label>カテゴリー</label>
             <select name="category" id="category" required>
                 <option value="">選択してください</option>
-                <option value="ファッション" {{ old('category') == 'ファッション' ? 'selected' : '' }}>ファッション</option>
-                <option value="ベビー・キッズ" {{ old('category') == 'ベビー・キッズ' ? 'selected' : '' }}>ベビー・キッズ</option>
-                <option value="ゲーム・おもちゃ・グッズ" {{ old('category') == 'ゲーム・おもちゃ・グッズ' ? 'selected' : '' }}>ゲーム・おもちゃ・グッズ</option>
-                <option value="ホビー・楽器・アート" {{ old('category') == 'ホビー・楽器・アート' ? 'selected' : '' }}>ホビー・楽器・アート</option>
-                <option value="チケット" {{ old('category') == 'チケット' ? 'selected' : '' }}>チケット</option>
-                <option value="本・雑誌・漫画" {{ old('category') == '本・雑誌・漫' ? 'selected' : '' }}>本・雑誌・漫</option>
-                <option value="CD・DVD・ブルーレイ" {{ old('category') == 'CD・DVD・ブルーレイ' ? 'selected' : '' }}>CD・DVD・ブルーレイ</option>
-                <option value="スマホ・タブレット・パソコン" {{ old('category') == 'スマホ・タブレット・パソコン' ? 'selected' : '' }}>スマホ・タブレット・パソコン</option>
-                <option value="テレビ・オーディオ・カメラ" {{ old('category') == 'テレビ・オーディオ・カメラ' ? 'selected' : '' }}>テレビ・オーディオ・カメラ</option>
-                <option value="生活家電・空調" {{ old('category') == '生活家電・空調' ? 'selected' : '' }}>生活家電・空調</option>
-                <option value="スポーツ" {{ old('category') == 'スポーツ' ? 'selected' : '' }}>スポーツ</option>
-                <option value="アウトドア・釣り・旅行用品" {{ old('category') == 'アウトドア・釣り・旅行用品' ? 'selected' : '' }}>アウトドア・釣り・旅行用品</option>
-                <option value="コスメ・美容" {{ old('category') == 'コスメ・美容' ? 'selected' : '' }}>コスメ・美容</option>
-                <option value="ダイエット・健康" {{ old('category') == 'ダイエット・健康' ? 'selected' : '' }}>ダイエット・健康</option>
-                <option value="食品・飲料・酒" {{ old('category') == '食品・飲料・酒' ? 'selected' : '' }}>食品・飲料・酒</option>
-                <option value="キッチン・日用品・その他" {{ old('category') == 'キッチン・日用品・その他' ? 'selected' : '' }}>キッチン・日用品・その他</option>
-                <option value="家具・インテリア" {{ old('category') == '家具・インテリア' ? 'selected' : '' }}>家具・インテリア</option>
-                <option value="ペット用品" {{ old('category') == 'ペット用品' ? 'selected' : '' }}>ペット用品</option>
-                <option value="DIY・工具" {{ old('category') == 'DIY・工具' ? 'selected' : '' }}>DIY・工具</option>
-                <option value="フラワー・ガーデニング" {{ old('category') == 'フラワー・ガーデニング' ? 'selected' : '' }}>フラワー・ガーデニング</option>
-                <option value="ハンドメイド・手芸" {{ old('category') == 'ハンドメイド・手芸' ? 'selected' : '' }}>ハンドメイド・手芸</option>
-                <option value="車・バイク・自転車" {{ old('category') == '車・バイク・自転車' ? 'selected' : '' }}>車・バイク・自転車</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : ''}}>
+                        {{ $category->name}}
+                    </option>
+                @endforeach
             </select>
         </div>
         <div class="item__condition">
             <label>商品の状態</label>
             <select name="condition" id="condition" required>
                 <option value="">選択してください</option>
-                <option value="新品" {{ old('condition') == '新品' ? 'selected' : '' }}>新品</option>
-                <option value="未使用に近い" {{ old('condition') == '未使用に近い' ? 'selected' : '' }}>未使用に近い</option>
-                <option value="目立った傷や汚れなし" {{ old('condition') == '目立った傷や汚れなし' ? 'selected' : '' }}>目立った傷や汚れなし</option>
-                <option value="やや傷や汚れあり" {{ old('condition') == 'やや傷や汚れあり' ? 'selected' : '' }}>やや傷や汚れあり</option>
-                <option value="傷や汚れあり" {{ old('condition') == '傷や汚れあり' ? 'selected' : '' }}>傷や汚れあり</option>
-                <option value="全体的に状態が悪い" {{ old('condition') == '全体的に状態が悪い' ? 'selected' : '' }}>全体的に状態が悪い</option>
+                @foreach($conditions as $condition)
+                    <option value="{{ $condition->id }}" {{ old('condition') == $condition->id ? 'selected' : '' }}>
+                        {{ $condition->name}}
+                    </option>
+                @endforeach
             </select>
         </div>
     </div>
@@ -81,7 +63,6 @@
     </div>
 
     <div class="item__price">
-        <p class="item__price-label">販売価格</p>
         <div class="item__price-content">
             <label>販売価格<input class="price-input" type="number" name="price" /></label>
         </div>

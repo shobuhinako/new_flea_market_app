@@ -72,11 +72,11 @@
         <table class="item__information-table">
             <tr>
                 <th>カテゴリー<th>
-                <td>{{ $item->category }}</td>
+                <td>{{ $item->category->name }}</td>
             </tr>
             <tr>
                 <th>商品の状態</th>
-                <td>{{ $item->condition }}</td>
+                <td>{{ $item->condition->name }}</td>
             </tr>
         </table>
 @endsection

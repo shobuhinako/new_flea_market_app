@@ -39,7 +39,7 @@
         @else
             <div class="address__registration">
                 <p>配送先が登録されていません。配送先を登録してください。</p>
-                <form class="shipping__address-change" action="{{ route('show.address') }}" method="get">
+                <form class="shipping__address-change" action="{{ route('show.address', ['item_id' => $item->id]) }}" method="get">
                 @csrf
                     <input type="submit" name="link" value="変更する">
                 </form>
