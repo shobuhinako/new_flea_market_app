@@ -21,4 +21,11 @@
             <input type="submit" value="お知らせメール作成">
         </form>
     </div>
+
+    <div class="remittance__amount">
+        <form class="remittance__amount-show" action="{{ route('show.remittance.amount') }}" method="get">
+        @csrf
+            <input type="submit" value="送金額確認">
+        </form>
+    </div>
 @endsection

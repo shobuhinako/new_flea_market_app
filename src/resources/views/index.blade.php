@@ -6,8 +6,8 @@
 @section('content')
     <div class="tabs">
         <button class="tablinks" onclick="openTab(event, 'allItems')" id="defaultOpen">全て</button>
-        <button class="tablinks" onclick="openTab(event, 'recommendations')" id="defaultOpen">おすすめ</button>
         @if(Auth::check() && Auth::user()->role_id != 1)
+            <button class="tablinks" onclick="openTab(event, 'recommendations')" id="defaultOpen">おすすめ</button>
             <button class="tablinks" onclick="openTab(event, 'mylist')">マイリスト</button>
         @endif
     </div>

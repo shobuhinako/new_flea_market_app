@@ -28,10 +28,10 @@ class ItemController extends Controller
         $allItems = Item::all();
 
         // ユーザーが購入したアイテムのカテゴリを取得
-        $purchasedCategories = SoldItem::where('user_id', $userId)->with('item')->get()->pluck('item.category')->unique();
+        $purchasedCategories = SoldItem::where('user_id', $userId)->with('item')->get()->pluck('item.category_id')->unique();
 
         // おすすめアイテムをカテゴリから取得
-        $recommendedItems = Item::whereIn('category', $purchasedCategories)->get();
+        $recommendedItems = Item::whereIn('category_id', $purchasedCategories)->get();
 
         // マイリストに登録されたアイテムを取得
         $favoriteItems = Favorite::where('user_id', $userId)->with('item')->get()->pluck('item');
@@ -223,6 +223,13 @@ class ItemController extends Controller
         $notificationUser->notify(new TransactionCompletedNotification($user));
 
         return back()->with('success', '取引完了が通知されました');
+    }
+
+    public function showRemittanceAmount()
+    {
+        $soldItems = SoldItem::with(['item.user'])->get();
+
+        return view('remittance-amount-confirmation', compact('soldItems'));
     }
 
 

@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>COACHTECH</title>
         <link rel="stylesheet" href="{{ asset('css/address.css') }}">
+        <script src="{{ asset('js/address-script.js') }}"></script>
+        <script src="https://yubinbango.github.io/yubinbango/yubinbango.js"></script>
     </head>
 
     <body>
@@ -18,14 +20,15 @@
             </div>
             <form class="change__address-form" action="{{ route('update.address') }}" method="post">
             @csrf
+                <input type="hidden" class="p-country-name" value="Japan">
                 <input type="hidden" id="item_id" name="item_id" value="{{ request()->item_id }}">
                 <div class="edit__address">
                     <label>郵便番号</label>
-                    <input type="text" name="post" value="{{ old('post') }}">
+                    <input type="text" id="post" class="p-postal-code" name="post" value="{{ old('post') }}">
                 </div>
                 <div class="edit__address">
                     <label>住所</label>
-                    <input type="text" name="address" value="{{ old('address') }}">
+                    <input type="text" id="address" class="p-region p-locality p-street-address p-extended-address" name="address" value="{{ old('address') }}">
                 </div>
                 <div class="edit__address">
                     <label>建物名</label>

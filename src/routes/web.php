@@ -59,4 +59,5 @@ Route::middleware('auth')->group(function(){
     Route::get('/transaction-status/{item_id}', [ItemController::class, 'showTRansactionStatus'])->name('show.transaction.status');
     Route::post('/transaction-comments', [ItemController::class, 'storeTransactionComment'])->name('store.transaction.comment');
     Route::post('/transaction/complete{item_id}', [ItemController::class, 'completeTransaction'])->name('transaction.complete');
+    Route::get('/remittance-amount-confirmation', [ItemController::class, 'showRemittanceAmount'])->name('show.remittance.amount');
 });
