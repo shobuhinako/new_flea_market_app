@@ -19,31 +19,66 @@ use App\Models\Condition;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (Auth::check()) {
-        $userId = auth()->id();
+        $query = Item::query();
+
+        // カテゴリフィルタリング
+        if ($request->has('category') && !empty($request->category)) {
+            $query->where('category_id', $request->category);
+        }
+
+        // 並び替え
+        if ($request->has('sort') && !empty($request->sort)) {
+            switch ($request->sort) {
+                case 'price_asc':
+                    $query->orderBy('price', 'asc');
+                    break;
+                case 'price_desc':
+                    $query->orderBy('price', 'desc');
+                    break;
+                case 'newest':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+                case 'oldest':
+                    $query->orderBy('created_at', 'asc');
+                    break;
+            }
+        }
+
+        // 販売状況
+        if ($request->has('status') && $request->status != '') {
+            if ($request->status == 'available') {
+                $query->whereDoesntHave('soldItems');
+            } elseif ($request->status == 'sold_out') {
+                $query->whereHas('soldItems');
+            }
+        }
 
         // 全ての商品を取得
-        $allItems = Item::all();
+        $allItems = $query->get();
 
-        // ユーザーが購入したアイテムのカテゴリを取得
-        $purchasedCategories = SoldItem::where('user_id', $userId)->with('item')->get()->pluck('item.category_id')->unique();
+        if (Auth::check()) {
+            $userId = auth()->id();
 
-        // おすすめアイテムをカテゴリから取得
-        $recommendedItems = Item::whereIn('category_id', $purchasedCategories)->get();
+            // ユーザーが購入したアイテムのカテゴリを取得
+            $purchasedCategories = SoldItem::where('user_id', $userId)->with('item')->get()->pluck('item.category_id')->unique();
 
-        // マイリストに登録されたアイテムを取得
-        $favoriteItems = Favorite::where('user_id', $userId)->with('item')->get()->pluck('item');
+            // おすすめアイテムをカテゴリから取得
+            $recommendedItems = Item::whereIn('category_id', $purchasedCategories)->get();
+
+            // マイリストに登録されたアイテムを取得
+            $favoriteItems = Favorite::where('user_id', $userId)->with('item')->get()->pluck('item');
 
         } else {
-            $allItems = Item::all();
             $favoriteItems = collect(); // 空のコレクションを作成
             $viewedItems = Cache::get('viewed_items', collect());
             $recommendedItems = $viewedItems;
         }
 
-        return view('index', compact('allItems', 'recommendedItems', 'favoriteItems'));
+        $categories = Category::all()->pluck('name', 'id'); // 全てのカテゴリを取得
+
+        return view('index', compact('allItems', 'recommendedItems', 'favoriteItems', 'categories'));
     }
 
     public function show($id)
@@ -231,7 +266,6 @@ class ItemController extends Controller
 
         return view('remittance-amount-confirmation', compact('soldItems'));
     }
-
 
 
 }
