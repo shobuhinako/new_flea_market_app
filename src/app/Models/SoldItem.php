@@ -12,6 +12,10 @@ class SoldItem extends Model
     protected $fillable = [
         'item_id',
         'user_id',
+        'coupon_id',
+        'discounted_price',
+        'is_completed_by_buyer',
+        'is_completed_by_seller',
     ];
 
     public function item()
@@ -22,5 +26,10 @@ class SoldItem extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class);
     }
 }

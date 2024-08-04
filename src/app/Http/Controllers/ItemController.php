@@ -189,6 +189,25 @@ class ItemController extends Controller
         ]);
     }
 
+    // public function showPurchaseForm($itemId)
+    // {
+    //     $item = Item::findOrFail($itemId);
+    //     $discountedPrice = session('discountedPrice', $item->price);
+    //     $couponCode = session('couponCode', null);
+    //     $post = session('post', null);
+    //     $address = session('address', null);
+    //     $building = session('building', null);
+
+    //     return view('purchase', [
+    //         'item' => $item,
+    //         'discountedPrice' => $discountedPrice,
+    //         'couponCode' => $couponCode,
+    //         'post' => $post,
+    //         'address' => $address,
+    //         'building' => $building,
+    //     ]);
+    // }
+
     public function search(Request $request)
     {
         $keyword = $request->input('search-box');
@@ -208,12 +227,13 @@ class ItemController extends Controller
 
     public function showTransactionStatus ($item_id)
     {
-        $soldItems = SoldItem::with(['user'])->findOrFail($item_id);
-        $item = Item::with(['soldItems.user', 'user'])->findOrFail($item_id);
+        $soldItem = SoldItem::with(['user'])->where('item_id', $item_id)->firstOrFail();
+        $item = Item::with('user')->findOrFail($item_id);
         $comments = TransactionComment::where('item_id', $item_id)->with('user')->get();
-        // $transaction = TransactionComment::where('item_id', $item_id)->first();
 
-        return view ('transaction-status', compact('item', 'comments', 'soldItems'));
+        $discountedPrice = $soldItem->discounted_price ?? null;
+
+        return view ('transaction-status', compact('item', 'comments', 'soldItem', 'discountedPrice'));
     }
 
     public function storeTransactionComment(Request $request)

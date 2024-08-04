@@ -13,6 +13,10 @@
     @csrf
         <button class="edit__profile-button">プロフィールを編集</button>
     </form>
+    <form class="coupon__list" action="{{ route('show.coupon.list') }}" action="get">
+        @csrf
+            <input type="submit" value="クーポン一覧">
+    </form>
 
     <div class="tabs">
         <button class="tablinks" onclick="openTab(event, 'listed__items')" id="defaultOpen">出品した商品</button>

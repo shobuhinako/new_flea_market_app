@@ -8,10 +8,17 @@
         <form action="{{route('stripe.charge')}}" method="post">
         @csrf
         <input type="hidden" name="item_id" value="{{ $item->id }}">
+        <input type="hidden" name="discounted_price" value="{{ $discountedPrice }}">
+        <input type="hidden" name="coupon_id" value="{{ $couponId ?? '' }}">
+        <!-- @if(isset($coupon))
+            <input type="hidden" name="coupon_id" value="{{ $couponId }}">
+        @else
+            <input type="hidden" name="coupon_id" value="">
+        @endif -->
         <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="{{ env('STRIPE_KEY') }}"
-            data-amount="{{ $item->price }}"
+            data-amount="{{ round($discountedPrice) }}"
             data-name="お支払い画面"
             data-label="支払う"
             data-description="現在はデモ画面です"
@@ -35,6 +42,13 @@
         <form action="{{ route('payment.sendBankTransferInfo') }}" method="post">
         @csrf
             <input type="hidden" name="item_id" value="{{ $item->id }}">
+            <input type="hidden" name="discounted_price" value="{{ $discountedPrice }}">
+            <input type="hidden" name="coupon_id" value="{{ $couponId ?? '' }}">
+            <!-- @if(isset($coupon))
+                <input type="hidden" name="coupon_id" value="{{ $couponId }}">
+            @else
+                <input type="hidden" name="coupon_id" value="">
+            @endif -->
             <button type="submit" class="btn btn-primary">購入する</button>
         </form>
     @endif

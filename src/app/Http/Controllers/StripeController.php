@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\SoldItem;
+use App\Models\Coupon;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Stripe\Customer;
@@ -91,40 +92,63 @@ class StripeController extends Controller
     //     ]);
     // }
 
-    public function showPaymentForm(Request $request)
-    {
-        $paymentMethod = $request->input('payment-method');
-        $itemId = $request->input('item_id');
-        $item = Item::find($itemId);
+    // public function showPaymentForm(Request $request)
+    // {
+    //     $paymentMethod = $request->input('payment-method');
+    //     $itemId = $request->input('item_id');
+    //     $couponId = session('coupon_id');
+    //     $discountedPrice = null;
 
-        if (!$item) {
-            return abort(404);
-        }
+    //     $item = Item::find($itemId);
 
-        return view('payment-form', [
-            'paymentMethod' => $paymentMethod,
-            'item' => $item,
-        ]);
-    }
+    //     if (!$item) {
+    //         return abort(404);
+    //     }
+
+    //     $coupon = null;
+    //     if ($couponId) {
+    //         $coupon = Coupon::find($couponId);
+    //         $discount = $coupon->discount;
+    //         $discountedPrice = $item->price * (1 - $discount / 100);
+    //     } else {
+    //         $discountedPrice = $item->price;
+    //     }
+
+    //     return view('payment-form', [
+    //         'paymentMethod' => $paymentMethod,
+    //         'item' => $item,
+    //         'discountedPrice' => $discountedPrice,
+    //         'coupon' => $coupon,
+    //     ]);
+    // }
 
     public function charge(Request $request)
     {
         $itemId = $request->input('item_id');
         $item = Item::findOrFail($itemId);
+        $discountedPrice = $request->input('discounted_price');
+        $couponId = $request->input('coupon_id', null);
+
+        if (!$couponId) {
+            $discountedPrice = $item->price;
+        }
 
         Stripe::setApiKey(config('services.stripe.st_key'));
 
         $charge = Charge::create([
-            'amount' => $item->price,
+            'amount' => round($discountedPrice),
             'currency' => 'jpy',
             'source'=> request()->stripeToken,
         ]);
 
         if ($charge->status === 'succeeded') {
-        SoldItem::create([
-            'item_id' => $request->input('item_id'),
-            'user_id' => auth()->id(),
-        ]);
+            SoldItem::create([
+                'item_id' => $itemId,
+                'user_id' => auth()->id(),
+                'coupon_id' => $couponId,
+                // 'discounted_price' => $discountedPrice,
+                'discounted_price' => $couponId ? $discountedPrice : null,
+            ]);
             return redirect()->route('payment.complete');
         } else {
             return back()->withErrors(['msg' => '支払いに失敗しました。もう一度お試しください。']);
@@ -140,11 +164,19 @@ class StripeController extends Controller
     {
         $itemId = $request->input('item_id');
         $item = Item::findOrFail($itemId);
+        $discountedPrice = $request->input('discounted_price');
+        $couponId = $request->input('coupon_id', null);
+
+        if ($couponId) {
+            $discountedPrice = $discountedPrice;
+        } else {
+            $discountedPrice = $item->price;
+        }
 
         $user = Auth::user();
         $email = $user->email;
 
-        Mail::to($email)->send(new BankTransferInfo($item));
+        Mail::to($email)->send(new BankTransferInfo($item, $discountedPrice));
 
         // 顧客の作成または取得
         $customer = Customer::create([
@@ -155,7 +187,7 @@ class StripeController extends Controller
         Stripe::setApiKey(config('services.stripe.st_key'));
 
         $paymentIntent = PaymentIntent::create([
-            'amount' => $item->price,
+            'amount' => round($discountedPrice),
             'currency' => 'jpy',
             'payment_method_types' => ['customer_balance'],
             'customer' => $customer->id,
@@ -164,6 +196,8 @@ class StripeController extends Controller
         SoldItem::create([
             'item_id' => $request->input('item_id'),
             'user_id' => auth()->id(),
+            'coupon_id' => $couponId,
+            'discounted_price' => $couponId ? $discountedPrice : null,
         ]);
 
         return view('payment-completion');
@@ -202,4 +236,28 @@ class StripeController extends Controller
 
         return response()->json(['status' => 'success'], 200);
     }
+
+    public function showPaymentForm(Request $request)
+    {
+        $paymentMethod = $request->input('payment-method');
+        $itemId = $request->input('item_id');
+        $item = Item::findOrFail($itemId);
+        // $discountedPrice = $item->price;
+
+        // $couponId = session('coupon_id');
+        // if ($couponId) {
+        //     $discountedPrice = session('discounted_price', $item->price);
+        // }
+
+        $couponId = $request->input('coupon_id');
+        $discountedPrice = $request->input('discounted_price', $item->price);
+
+        return view('payment-form', [
+            'paymentMethod' => $paymentMethod,
+            'item' => $item,
+            'discountedPrice' => $discountedPrice,
+            'couponId' => $couponId,
+        ]);
+    }
+
 }

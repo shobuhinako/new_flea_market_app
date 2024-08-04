@@ -28,4 +28,11 @@
             <input type="submit" value="送金額確認">
         </form>
     </div>
+
+    <div class="create__coupon">
+        <form class="create__coupon-show" action="{{ route('show.coupon') }}" method="get">
+        @csrf
+            <input type="submit" value="クーポン作成">
+        </form>
+    </div>
 @endsection

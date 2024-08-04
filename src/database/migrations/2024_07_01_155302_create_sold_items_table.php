@@ -17,12 +17,15 @@ class CreateSoldItemsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('coupon_id')->nullable();
+            $table->integer('discounted_price')->nullable();
             $table->boolean('is_completed_by_buyer')->default(false);
             $table->boolean('is_completed_by_seller')->default(false);
             $table->timestamps();
 
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('cascade');
         });
     }
 

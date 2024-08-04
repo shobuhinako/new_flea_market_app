@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\CouponController;
 
 
 /*
@@ -60,4 +61,9 @@ Route::middleware('auth')->group(function(){
     Route::post('/transaction-comments', [ItemController::class, 'storeTransactionComment'])->name('store.transaction.comment');
     Route::post('/transaction/complete{item_id}', [ItemController::class, 'completeTransaction'])->name('transaction.complete');
     Route::get('/remittance-amount-confirmation', [ItemController::class, 'showRemittanceAmount'])->name('show.remittance.amount');
+    Route::get('/create/coupon', [CouponController::class, 'showCoupon'])->name('show.coupon');
+    Route::post('/create/coupon', [CouponController::class, 'createCoupon'])->name('create.coupon');
+    Route::get('/coupon/list', [CouponController::class, 'showCouponList'])->name('show.coupon.list');
+    Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon');
+    Route::post('/clear-coupon', [CouponController::class, 'clearCoupon'])->name('clear.coupon');
 });

@@ -24,21 +24,27 @@
             </tr>
             <tr class="table__row">
                 <th class="table__item-name">支払い金額</th>
-                <td class="table__item">￥{{ $item->price }}</td>
+                <td class="table__item">
+                    @if ($discountedPrice)
+                        ￥{{ $discountedPrice }}
+                    @else
+                        ￥{{ $item->price }}
+                    @endif
+                </td>
             </tr>
             <tr class="table__row">
                 <th class="table__item-name">
                     @if(Auth::user()->id == $item->user_id)
-                        出品者
-                    @else
                         購入者
+                    @else
+                        出品者
                     @endif
                 </th>
                 <td class="table__item">
                     @if(Auth::user()->id == $item->user_id)
-                        {{ $item->user->name }}
+                        {{ $soldItem->user->name }}
                     @else
-                        {{ $soldItems->user->name }}
+                        {{ $item->user->name }}
                     @endif
                 </td>
             </tr>
@@ -67,9 +73,9 @@
         <form class="transaction__complete-submit" action="{{ route('transaction.complete', $item->id) }}" method="post">
         @csrf
             @if(Auth::user()->id == $item->user_id)
-                <button class="transaction__complete-button" @if($soldItems->is_completed_by_seller) disabled @endif>取引完了</button>
+                <button class="transaction__complete-button" @if($soldItem->is_completed_by_seller) disabled @endif>取引完了</button>
             @else
-                <button class="transaction__complete-button" @if ($soldItems->is_completed_by_buyer) disabled @endif>取引完了</button>
+                <button class="transaction__complete-button" @if ($soldItem->is_completed_by_buyer) disabled @endif>取引完了</button>
             @endif
         </form>
     </div>
