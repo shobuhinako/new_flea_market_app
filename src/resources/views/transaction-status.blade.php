@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/transaction-status.css') }}">
 @endsection
 
 @section('content')
@@ -70,7 +71,8 @@
     </div>
 
     <div class="transaction__complete">
-        <form class="transaction__complete-submit" action="{{ route('transaction.complete', $item->id) }}" method="post">
+        <!-- <form class="transaction__complete-submit" action="{{ route('transaction.complete', $item->id) }}" method="post"> -->
+        <form class="transaction__complete-submit" action="{{ route('show.transaction.rate', $item->id) }}" method="get">
         @csrf
             @if(Auth::user()->id == $item->user_id)
                 <button class="transaction__complete-button" @if($soldItem->is_completed_by_seller) disabled @endif>取引完了</button>

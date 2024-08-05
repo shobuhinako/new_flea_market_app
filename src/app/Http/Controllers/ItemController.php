@@ -16,6 +16,7 @@ use App\Notifications\TransactionCompletedNotification;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Category;
 use App\Models\Condition;
+use App\Http\Requests\CompleteTransactionRequest;
 
 class ItemController extends Controller
 {
@@ -258,7 +259,7 @@ class ItemController extends Controller
         return back()->with('success', 'コメントが送信されました。');
     }
 
-    public function completeTransaction(Request $request, $item_id)
+    public function completeTransaction(CompleteTransactionRequest $request, $item_id)
     {
         $item = Item::findOrFail($item_id);
         $user = Auth::user();
@@ -266,9 +267,11 @@ class ItemController extends Controller
         $soldItem = SoldItem::where('item_id', $item_id)->firstOrFail();
 
         if ($user->id == $item->user_id) {
+            $soldItem->rating_by_seller = $request->input('point');
             $soldItem->is_completed_by_seller = true;
             $notificationUser = $soldItem->user;
         } else {
+            $soldItem->rating_by_buyer = $request->input('point');
             $soldItem->is_completed_by_buyer = true;
             $notificationUser = $item->user;
         }
@@ -285,6 +288,16 @@ class ItemController extends Controller
         $soldItems = SoldItem::with(['item.user'])->get();
 
         return view('remittance-amount-confirmation', compact('soldItems'));
+    }
+
+    public function showTransactionRate($item_id){
+        $item = Item::findOrFail($item_id);
+        $soldItem = SoldItem::where('item_id', $item_id)->firstOrFail();
+
+        return view('transaction-rate', [
+            'item' => $item,
+            'soldItem' => $soldItem,
+        ]);
     }
 
 

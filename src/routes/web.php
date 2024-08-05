@@ -66,4 +66,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/coupon/list', [CouponController::class, 'showCouponList'])->name('show.coupon.list');
     Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon');
     Route::post('/clear-coupon', [CouponController::class, 'clearCoupon'])->name('clear.coupon');
+    Route::get('/transaction/{item}/rate', [ItemController::class, 'showTransactionRate'])->name('show.transaction.rate');
+    // Route::post('/transaction/{item}/complete', [ItemController::class, 'completeTransaction'])->name('transaction.complete');
 });

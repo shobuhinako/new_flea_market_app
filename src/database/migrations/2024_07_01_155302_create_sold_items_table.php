@@ -21,6 +21,8 @@ class CreateSoldItemsTable extends Migration
             $table->integer('discounted_price')->nullable();
             $table->boolean('is_completed_by_buyer')->default(false);
             $table->boolean('is_completed_by_seller')->default(false);
+            $table->integer('rating_by_buyer')->nullable();
+            $table->integer('rating_by_seller')->nullable();
             $table->timestamps();
 
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
