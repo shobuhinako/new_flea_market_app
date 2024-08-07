@@ -1,0 +1,55 @@
+/* power__seller-tag のスタイル */
+.power__seller-tag {
+    background-color: #FFD700;
+    /* ゴールドカラー */
+    color: #000;
+    /* テキストカラー */
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-left: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+/* info-icon のスタイル */
+.info-icon {
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: red;
+    /* 赤色に設定 */
+    color: #fff;
+    /* テキストカラー */
+    font-weight: bold;
+}
+
+/* info-popup のスタイル */
+.info-popup {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    max-width: 350px;
+    z-index: 1000;
+    top: 100%;
+    /* アイコンの下に表示 */
+    left: 0;
+    /* アイコンの左に揃える */
+    white-space: nowrap;
+    /* テキストの折り返しを防ぐ */
+}
+
+/* info-icon のホバー時に info-popup を表示 */
+.info-icon:hover+.info-popup {
+    display: block;
+}

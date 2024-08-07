@@ -63,4 +63,9 @@ class Item extends Model
     {
         return $this->belongsTo(Condition::class);
     }
+
+    public function seller()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

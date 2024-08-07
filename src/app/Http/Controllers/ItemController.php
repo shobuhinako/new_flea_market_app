@@ -84,7 +84,7 @@ class ItemController extends Controller
 
     public function show($id)
     {
-        $item = Item::with(['category', 'condition'])->findOrFail($id);
+        $item = Item::with(['category', 'condition', 'seller'])->findOrFail($id);
 
        // ユーザーがログインしていない場合にのみキャッシュに保存する
         if (!Auth::check()) {
@@ -277,6 +277,8 @@ class ItemController extends Controller
         }
 
         $soldItem->save();
+
+        $notificationUser->updatePowerSellerStatus();
 
         $notificationUser->notify(new TransactionCompletedNotification($user));
 

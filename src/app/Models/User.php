@@ -57,4 +57,24 @@ class User extends Authenticatable
     {
         return $this->hasMany(SoldItem::class);
     }
+
+    public function isPowerSeller()
+    {
+        // `sold_items` テーブルからアイテムを検索し、`items` テーブルで該当のユーザーを取得
+        $userId = $this->id;
+
+        $averageRating = SoldItem::join('items', 'sold_items.item_id', '=', 'items.id')
+            ->where('items.user_id', $userId)
+            ->whereNotNull('sold_items.rating_by_buyer')
+            ->average('sold_items.rating_by_buyer');
+
+        // 平均評価が3.5以上であればパワーセラー
+        return $averageRating >= 3.5;
+    }
+
+    public function updatePowerSellerStatus()
+    {
+        $this->is_power_seller = $this->isPowerSeller();
+        $this->save();
+    }
 }

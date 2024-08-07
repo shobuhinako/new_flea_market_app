@@ -4,11 +4,26 @@
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
+@section('js')
+    <script src="{{ asset('js/mypage-script.js') }}"></script>
+@endsection
+
 @section('content')
     <div class="profile__image">
         <img class="rounded__image" src="{{ Storage::url('images/' . $user->image_path) }}" alt="プロフィール画像" />
     </div>
-    <div class="top__content">{{ $user->name }}</div>
+    <div class="top__content">
+        {{ $user->name }}
+        @if(Auth::user()->is_power_seller)
+            <span class="power__seller-tag">
+                パワーセラー
+                <span class="info-icon" id="info-icon">?</span>
+                <div class="info-popup" id="info-popup">
+                    あなたは評価が3.5以上の出品者です。
+                </div>
+            </span>
+        @endif
+    </div>
     <form class="edit__profile" action="{{ route('show.profile') }}" method="get">
     @csrf
         <button class="edit__profile-button">プロフィールを編集</button>
@@ -70,6 +85,4 @@
             </div>
         @endforeach
     </div>
-
-    <script src="{{ asset('js/mypage-script.js') }}"></script>
 @endsection
