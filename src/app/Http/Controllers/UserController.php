@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\EditProfileRequest;
+use App\Http\Requests\ChangeAddressRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\SendNotificationRequest;
 use App\Models\Item;
 use App\Models\SoldItem;
 use App\Mail\SendEmail;
@@ -72,7 +75,7 @@ class UserController extends Controller
         return view ('address', ['item_id' => $item_id]);
     }
 
-    public function updateAddress(Request $request)
+    public function updateAddress(ChangeAddressRequest $request)
     {
         $user = Auth::user();
 
@@ -94,7 +97,7 @@ class UserController extends Controller
         return view ('create-admin');
     }
 
-    public function createAdmin(Request $request)
+    public function createAdmin(RegisterRequest $request)
     {
         $form = $request->only('name', 'email', 'password');
         $user = User::create([
@@ -113,7 +116,7 @@ class UserController extends Controller
         return view('send-notification');
     }
 
-    public function sendNotification(Request $request)
+    public function sendNotification(SendNotificationRequest $request)
     {
         $destination = $request->input('destination');
         $message = $request->input('message');

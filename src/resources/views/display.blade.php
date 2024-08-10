@@ -11,6 +11,16 @@
     <p>{{ session('success') }}</p>
 @endif
 
+@if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 <form class="display__item" action="{{ route('create.item') }}" method="post" enctype="multipart/form-data">
 @csrf
     <div class="upload__image">

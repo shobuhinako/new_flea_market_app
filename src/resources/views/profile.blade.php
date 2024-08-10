@@ -11,6 +11,16 @@
     <p>{{ session('success') }}</p>
 @endif
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form class="edit__profile" action="{{ route('edit.profile') }}" method="post" enctype="multipart/form-data">
 @csrf
 @method('PUT')
@@ -26,10 +36,10 @@
         <label>ユーザー名<input type="text" name="name" /></label>
     </div>
     <div class="edit__profile-box">
-        <label>郵便番号<input type="text" name="post" /></label>
+        <label>郵便番号<input type="text"  id="postcode" name="post" /></label>
     </div>
     <div class="edit__profile-box">
-        <label>住所<input type="text" name="address" /></label>
+        <label>住所<input type="text" id="address" name="address" /></label>
     </div>
     <div class="edit__profile-box">
         <label>建物名<input type="text" name="building" /></label>

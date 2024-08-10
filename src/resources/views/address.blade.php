@@ -20,6 +20,17 @@
             </div>
             <form class="change__address-form" action="{{ route('update.address') }}" method="post">
             @csrf
+
+            @if ($errors->any())
+                <div class="error-summary">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
                 <input type="hidden" class="p-country-name" value="Japan">
                 <input type="hidden" id="item_id" name="item_id" value="{{ request()->item_id }}">
                 <div class="edit__address">

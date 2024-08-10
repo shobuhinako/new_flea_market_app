@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\ValidName;
+use App\Rules\ValidAddress;
 
 class EditProfileRequest extends FormRequest
 {
@@ -24,11 +26,44 @@ class EditProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name' => 'nullable|string|max:255',
-            'post' => 'nullable|string|max:50',
-            'address' => 'nullable|string|max:50',
-            'building_name' => 'nullable|string|max:50',
+            'name' => ['required', 'string', 'max:255', new ValidName],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'post' => 'required|digits:7',
+            'address' => ['required', 'string', 'max:50', new ValidAddress],
+            'building' => 'nullable|string|max:50',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'ユーザー名',
+            'image' => 'プロフィール画像',
+            'post' => '郵便番号',
+            'address' => '住所',
+            'building' => '建物名',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'ユーザー名は必須です。',
+            'name.string' => 'ユーザー名は文字列でなければなりません。',
+            'name.max' => 'ユーザー名は最大255文字でなければなりません。',
+
+            'image.image' => 'プロフィール画像は画像ファイルでなければなりません。',
+            'image.mimes' => 'プロフィール画像はjpeg, png, jpg, または gif 形式でなければなりません。',
+
+            'post.required' => '郵便番号は必須です。',
+            'post.digits' => '郵便番号は7桁の数字でなければなりません。',
+
+            'address.required' => '住所は必須です。',
+            'address.string' => '住所は文字列でなければなりません。',
+            'address.max' => '住所は最大50文字でなければなりません。',
+
+            'building.string' => '建物名は文字列でなければなりません。',
+            'building.max' => '建物名は最大50文字でなければなりません。',
         ];
     }
 }

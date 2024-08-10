@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Http\Requests\CompleteTransactionRequest;
+use App\Http\Requests\CreateItemRequest;
 
 class ItemController extends Controller
 {
@@ -108,7 +109,7 @@ class ItemController extends Controller
         return view ('display', compact('categories', 'conditions'));
     }
 
-    public function store(Request $request) {
+    public function store(CreateItemRequest $request) {
         $user = Auth::user();
 
         $imageName = $user->id . '_image' . time() . '.' . $request->file('image')->extension();

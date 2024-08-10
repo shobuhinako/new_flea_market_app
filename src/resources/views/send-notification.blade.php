@@ -7,6 +7,15 @@
     @if(session()->has('success'))
             <p>{{ session('success') }}</p>
     @endif
+
+    @if (count($errors) > 0)
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    @endif
+
     <form action="{{ route('send.notification') }}" method="post">
     @csrf
     <div>
