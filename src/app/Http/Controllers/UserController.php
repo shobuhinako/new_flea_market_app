@@ -22,7 +22,11 @@ class UserController extends Controller
         $user = Auth::user();
 
         // 出品した商品を取得
-        $listedItems = Item::where('user_id', $user->id)->get();
+        $listedItems = Item::where('user_id', $user->id)->get()->map(function($item) {
+            // sold_itemsに関連するレコードが存在する場合、is_soldをtrueに設定
+            $item->is_sold = SoldItem::where('item_id', $item->id)->exists();
+            return $item;
+        });
 
         // 購入した商品を取得
         $purchasedItems = SoldItem::where('user_id', $user->id)->with('item')->get()->pluck('item');

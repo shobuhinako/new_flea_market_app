@@ -71,7 +71,6 @@
     </div>
 
     <div class="transaction__complete">
-        <!-- <form class="transaction__complete-submit" action="{{ route('transaction.complete', $item->id) }}" method="post"> -->
         <form class="transaction__complete-submit" action="{{ route('show.transaction.rate', $item->id) }}" method="get">
         @csrf
             @if(Auth::user()->id == $item->user_id)

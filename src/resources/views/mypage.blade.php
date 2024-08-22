@@ -4,10 +4,6 @@
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
-@section('js')
-    <script src="{{ asset('js/mypage-script.js') }}"></script>
-@endsection
-
 @section('content')
     <div class="profile__image">
         <img class="rounded__image" src="{{ Storage::url('images/' . $user->image_path) }}" alt="プロフィール画像" />
@@ -52,13 +48,16 @@
                     </div>
                 </div>
             </div>
-            <div class="confirm__transaction-status">
-                <form class="transaction__status" action="{{ route('show.transaction.status', ['item_id' => $item->id]) }}" method="get">
-                @csrf
-                    <input type="hidden" name="item_id" value="{{ $item->id }}">
-                    <input type="submit" value="取引状況確認">
-                </form>
-            </div>
+
+            @if($item->is_sold) <!-- 商品が売り切れている場合 -->
+                <div class="confirm__transaction-status">
+                    <form class="transaction__status" action="{{ route('show.transaction.status', ['item_id' => $item->id]) }}" method="get">
+                    @csrf
+                        <input type="hidden" name="item_id" value="{{ $item->id }}">
+                        <input type="submit" value="取引状況確認">
+                    </form>
+                </div>
+            @endif
         @endforeach
     </div>
 
@@ -85,4 +84,6 @@
             </div>
         @endforeach
     </div>
+
+    <script src="{{ asset('js/mypage-script.js') }}"></script>
 @endsection

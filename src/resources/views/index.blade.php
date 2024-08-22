@@ -1,12 +1,18 @@
 @extends('layouts.app')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
 @section('content')
     <div class="tabs">
         <button class="tablinks" onclick="openTab(event, 'allItems')" id="defaultOpen" data-tab="allItems">全て</button>
-        @if(Auth::check() && Auth::user()->role_id != 1)
+        @if(Auth::check())
+            @if(Auth::user()->role_id != 1)
+                <button class="tablinks" onclick="openTab(event, 'recommendations')" data-tab="recommendations">おすすめ</button>
+                <button class="tablinks" onclick="openTab(event, 'mylist')" data-tab="mylist">マイリスト</button>
+            @endif
+        @else
             <button class="tablinks" onclick="openTab(event, 'recommendations')" data-tab="recommendations">おすすめ</button>
             <button class="tablinks" onclick="openTab(event, 'mylist')" data-tab="mylist">マイリスト</button>
         @endif

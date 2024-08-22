@@ -10,7 +10,6 @@ use App\Mail\CouponCreated;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\ApplyCouponRequest;
 use App\Http\Requests\StoreCouponRequest;
 

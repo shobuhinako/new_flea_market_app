@@ -107,7 +107,6 @@ return [
     // カスタムバリデーションメッセージ
     'custom' => [
         'coupon_code' => [
-            // 'invalid' => '無効なクーポンコードです。',
             'already_used' => 'このクーポンは既に使用済みです。',
             'expired' => 'このクーポンは期限切れです。',
         ],
@@ -117,7 +116,5 @@ return [
     'attributes' => [
         'discount' => '割引率',
         'expires_at' => '有効期限',
-        // 'coupon_code' => 'クーポンコード',
-        // 'item_id' => 'アイテムID',
     ],
 ];

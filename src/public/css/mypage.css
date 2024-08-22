@@ -59,3 +59,12 @@
 .info-icon:hover+.info-popup {
     display: block;
 }
+
+.tabcontent {
+    display: none;
+}
+
+.tablinks.active {
+    background-color: #ccc;
+    /* タブがアクティブな時のスタイルを設定 */
+}

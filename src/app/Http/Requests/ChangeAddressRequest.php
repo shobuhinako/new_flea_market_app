@@ -54,8 +54,4 @@ class ChangeAddressRequest extends FormRequest
             'building.max' => '建物名は最大50文字でなければなりません。',
         ];
     }
-
-
-
-
 }

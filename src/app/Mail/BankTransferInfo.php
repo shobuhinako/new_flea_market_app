@@ -7,7 +7,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Item;
-// use App\Models\SoldItem;
 
 class BankTransferInfo extends Mailable
 {
@@ -25,16 +24,6 @@ class BankTransferInfo extends Mailable
     {
         $this->item = $item;
         $this->discountedPrice = $discountedPrice;
-
-        // $soldItem = SoldItem::where('item_id', $item->id)
-        //                     ->where('user_id', auth()->id())
-        //                     ->first();
-
-        // if ($couponId) {
-        //     $discountedPrice = $discountedPrice;
-        // } else {
-        //     $discountedPrice = $item->price;
-        // }
     }
 
     /**
@@ -48,9 +37,7 @@ class BankTransferInfo extends Mailable
                     ->subject('振込先情報')
                     ->with([
                         'itemName' => $this->item->name,
-                        // 'itemPrice' => $this->item->price,
                         'itemPrice' => $this->discountedPrice,
-
                     ]);
     }
 }

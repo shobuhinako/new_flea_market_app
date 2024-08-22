@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>COACHTECH</title>
+        <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     </head>
 
     <body>
         <header class="header">
             <h1 class="header__title">
-                <a href="{{ route('index') }}">COACHTECH</a>
+                <a class="header__title-text" href="{{ route('index') }}">COACHTECH</a>
             </h1>
         </header>
 
@@ -26,12 +27,20 @@
             <div class="main__form">
                 <form class="main__form-content" action="{{ route('login') }}" method="post">
                 @csrf
-                    <input type="email" name="email" value="{{ old('email') }}" placeholder="メールアドレス" />
-                    <input type="password" name="password" placeholder="パスワード" />
-                    <input type="submit" name="submit" value="ログインする" />
+                    <div class="email">
+                        <label class="label">メールアドレス</label>
+                        <input class="text__box" type="email" name="email" value="{{ old('email') }}" />
+                    </div>
+                    <div class="password">
+                        <label class="label">パスワード</label>
+                        <input class="text__box" type="password" name="password" />
+                    </div>
+                    <div class="login__button">
+                        <input class="login__button-item" type="submit" name="submit" value="ログインする" />
+                    </div>
                 </form>
                 <div class="link">
-                    <a class="login__link" href="{{ route('show.register') }}">会員登録はこちら</a>
+                    <a class="register__link" href="{{ route('show.register') }}">会員登録はこちら</a>
                 </div>
             </div>
         </div>

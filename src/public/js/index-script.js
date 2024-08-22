@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         url.searchParams.delete('sort');
         url.searchParams.delete('status');
         window.history.pushState({}, '', url);
-        
+
         // ページをリロードしてフィルターをクリア
         window.location.reload();
     });
@@ -24,13 +24,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
-    
+
     // タブのコンテンツを全て非表示にする
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
-    
+
     // タブリンクの "active" クラスを全て削除する
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {

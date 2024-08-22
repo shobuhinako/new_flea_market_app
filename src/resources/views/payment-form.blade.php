@@ -10,11 +10,6 @@
         <input type="hidden" name="item_id" value="{{ $item->id }}">
         <input type="hidden" name="discounted_price" value="{{ $discountedPrice }}">
         <input type="hidden" name="coupon_id" value="{{ $couponId ?? '' }}">
-        <!-- @if(isset($coupon))
-            <input type="hidden" name="coupon_id" value="{{ $couponId }}">
-        @else
-            <input type="hidden" name="coupon_id" value="">
-        @endif -->
         <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="{{ env('STRIPE_KEY') }}"
@@ -44,11 +39,6 @@
             <input type="hidden" name="item_id" value="{{ $item->id }}">
             <input type="hidden" name="discounted_price" value="{{ $discountedPrice }}">
             <input type="hidden" name="coupon_id" value="{{ $couponId ?? '' }}">
-            <!-- @if(isset($coupon))
-                <input type="hidden" name="coupon_id" value="{{ $couponId }}">
-            @else
-                <input type="hidden" name="coupon_id" value="">
-            @endif -->
             <button type="submit" class="btn btn-primary">購入する</button>
         </form>
     @endif

@@ -97,7 +97,7 @@ class ItemController extends Controller
 
             // キャッシュに保存 (有効期限を設定)
             Cache::put('viewed_items', $viewedItems, 60 * 60); // 1 hour expiration
-    }
+        }
         return view('detail', compact('item'));
     }
 
@@ -190,25 +190,6 @@ class ItemController extends Controller
             'building' => $user->building,
         ]);
     }
-
-    // public function showPurchaseForm($itemId)
-    // {
-    //     $item = Item::findOrFail($itemId);
-    //     $discountedPrice = session('discountedPrice', $item->price);
-    //     $couponCode = session('couponCode', null);
-    //     $post = session('post', null);
-    //     $address = session('address', null);
-    //     $building = session('building', null);
-
-    //     return view('purchase', [
-    //         'item' => $item,
-    //         'discountedPrice' => $discountedPrice,
-    //         'couponCode' => $couponCode,
-    //         'post' => $post,
-    //         'address' => $address,
-    //         'building' => $building,
-    //     ]);
-    // }
 
     public function search(Request $request)
     {

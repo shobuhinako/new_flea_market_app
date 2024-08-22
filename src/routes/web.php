@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
@@ -20,8 +19,8 @@ use App\Http\Controllers\CouponController;
 |
 */
 
-Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('show.register');
-Route::post('/register', [RegisterController::class, 'create'])->name('register');
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('show.register');
+Route::post('/register', [AuthController::class, 'create'])->name('register');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('show.login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/', [ItemController::class, 'index'])->name('index');
@@ -41,17 +40,12 @@ Route::middleware('auth')->group(function(){
     Route::post('/detail/comment/{item_id}', [ItemController::class, 'create'])->name('create.comment');
     Route::delete('/detail/comment/{item_id}/{comment_id}', [ItemController::class, 'destroy'])->name('delete.comment');
     Route::get('/confirm_purchase/{item_id}', [ItemController::class, 'showPurchaseForm'])->name('show.purchase');
-    Route::post('/confirm_purchase/{item_id}', [StripeController::class, 'charge'])->name('charge');
-    // Route::post('/change-payment', [StripeController::class, 'changePayment'])->name('change.payment');
-    // Route::post('/update-payment', [StripeController::class, 'updatePayment'])->name('update.payment');
     Route::get('/address__change/{item_id}', [UserController::class, 'address'])->name('show.address');
-    Route::post('/create-payment-intent', [StripeController::class, 'createPaymentIntent'])->name('create.payment.intent');
     Route::post('/address__change', [UserController::class, 'updateAddress'])->name('update.address');
     Route::get('/payment-form', [StripeController::class, 'showPaymentForm'])->name('show.payment.form');
     Route::post('/charge', [StripeController::class, 'charge'])->name('stripe.charge');
     Route::get('/payment_completion', [StripeController::class, 'success'])->name('payment.complete');
     Route::post('/payment/send-bank-transfer-info', [StripeController::class, 'sendBankTransferInfo'])->name('payment.sendBankTransferInfo');
-    Route::post('/webhook/stripe', [StripeController::class, 'handleWebhook'])->name('webhook.stripe');
     Route::get('/admin-mypage', [UserController::class, 'showAdminMypage'])->name('show.admin.mypage');
     Route::get('/create/admin', [UserController::class, 'showAdmin'])->name('show.admin');
     Route::post('/create/admin', [UserController::class, 'createAdmin'])->name('create.admin');
@@ -67,5 +61,4 @@ Route::middleware('auth')->group(function(){
     Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon');
     Route::post('/clear-coupon', [CouponController::class, 'clearCoupon'])->name('clear.coupon');
     Route::get('/transaction/{item}/rate', [ItemController::class, 'showTransactionRate'])->name('show.transaction.rate');
-    // Route::post('/transaction/{item}/complete', [ItemController::class, 'completeTransaction'])->name('transaction.complete');
 });
