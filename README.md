@@ -1,8 +1,8 @@
 # flea_market_app
 
     フリマサービス
-    ！[image](https://github.com/user-attachments/assets/2ad274f3-00d0-4fa7-84d8-ab915ca0b861)
-
+    ![image](https://github.com/user-attachments/assets/4d3a9e16-7d93-4b4f-abf4-9bc5c055cde6)
+    
 ##　目的
 
     coachtechブランドのアイテムを出品するため
