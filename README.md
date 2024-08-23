@@ -2,6 +2,7 @@
 
     フリマサービス
     <img width="1098" alt="スクリーンショット 2024-08-22 12 40 36" src="https://github.com/user-attachments/assets/48ab9a5f-ab4f-492f-bd6f-64875dd63587">
+    画像はリンク（https://github.com/user-attachments/assets/48ab9a5f-ab4f-492f-bd6f-64875dd63587）から確認ください。
 
 ## 目的
 
@@ -49,6 +50,7 @@
 ## テーブル設計
 
     ![flea_market_app](https://github.com/user-attachments/assets/de4f0c70-eb7d-400e-82b2-d6234121cd9e)
+    画像はリンク（https://github.com/user-attachments/assets/de4f0c70-eb7d-400e-82b2-d6234121cd9e）から確認ください。
 
 ## 環境構築
 
@@ -72,4 +74,9 @@
     1. admin@gmail.com（管理者アカウント）
     2. tarou@gmail.com（一般ユーザー）
     3. jirou@gmail.com（一般ユーザー）
+
+## PHPUnitでのテスト実施
+
+    1. docker-compose exec php bash
+    2. php artisan test
 
