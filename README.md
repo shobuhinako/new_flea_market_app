@@ -1,8 +1,8 @@
 # flea_market_app
 
     フリマサービス
-    <img width="1098" alt="スクリーンショット 2024-08-22 12 40 36" src="https://github.com/user-attachments/assets/4d3a9e16-7d93-4b4f-abf4-9bc5c055cde6">
-    
+    ![ホーム画面](https://github.com/shobuhinako/flea_market_app/issues/2#issue-2479995770)
+
 
 
 ## 目的
