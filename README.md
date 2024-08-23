@@ -1,7 +1,8 @@
 # flea_market_app
 
     フリマサービス
-    ![image](https://github.com/user-attachments/assets/4d3a9e16-7d93-4b4f-abf4-9bc5c055cde6)
+    <img width="1180" alt="スクリーンショット 2024-08-23 10 52 13" src="https://github.com/user-attachments/assets/dde39f88-dd6c-4765-b8a5-73138aca1918">
+
     
 ##　目的
 
@@ -48,7 +49,8 @@
 
 ## テーブル設計
 
-    ![image](https://github.com/user-attachments/assets/de4f0c70-eb7d-400e-82b2-d6234121cd9e)
+    ![flea_market_app](https://github.com/user-attachments/assets/7ff1158d-63b8-49e2-a9f8-de8ceb225b31)
+
 
 ## 環境構築
 
