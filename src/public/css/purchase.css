@@ -1,0 +1,153 @@
+.item__information {
+    display: flex;
+}
+
+.item__image-content {
+    width: 200px;
+    height: 200px;
+}
+
+.item__image {
+    margin-right: 30px;
+}
+
+.payment__content {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.payment__content-left {
+    flex: 1;
+    margin-left: 110px;
+}
+
+.payment__content-right {
+    flex: 1;
+    margin-left: 50px;
+}
+
+.address {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.address__content {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.shipping__address {
+    margin-bottom: 15px;
+}
+
+.change__button {
+    position: absolute;
+    margin-left: 64%;
+    margin-top: 83px;
+}
+
+.change__button-item {
+    border: none;
+    background-color: white;
+    color: #4169e1;
+    cursor: pointer;
+}
+
+.coupon__title {
+    margin-bottom: 15px;
+}
+
+.coupon {
+    margin-bottom: 30px;
+}
+
+.payment__options {
+    margin-bottom: 15px;
+}
+
+.payment {
+    display: flex;
+}
+
+.button__item {
+    position: relative;
+    width: 100%;
+    border: none;
+    background-color: white;
+    color: #4169e1;
+    cursor: pointer;
+}
+
+.button {
+    margin-top: 45px;
+    margin-left: 60%;
+    width: 100px;
+}
+
+.table__row {
+    margin-bottom: 10px;
+}
+
+.table__item-name,.table__item {
+    padding: 30px 50px;
+    border: none;
+}
+
+.purchase__content {
+    border: 1px solid #a9a9a9;
+    /* テーブルの外枠にだけ枠線を追加 */
+    border-collapse: collapse;
+    /* セルの間に余白を作らない */
+    width: 80%;
+    /* テーブルの幅を100%に設定 */
+    margin-bottom: 30px;
+}
+
+.table__item-name {
+    font-size: 13px;
+}
+
+.table__item {
+    font-size: 13px;
+}
+
+.purchase__button {
+    background-color: #ff6347;
+    border: none;
+    color: white;
+    width: 80%;
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.purchase__button:disabled {
+    background-color: #d3d3d3;
+    /* 押せない時のグレー色 */
+    cursor: not-allowed;
+    /* 押せない時のマウスカーソル */
+}
+
+.purchase__confirmation-content {
+    width: 100%;
+}
+
+.options {
+    margin-right: 50px;
+    position: absolute;
+}
+
+.selection {
+    width: 250px;
+}
+
+.address_details {
+    position: absolute;
+}
+
+
+
+

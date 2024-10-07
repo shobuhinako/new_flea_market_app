@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/send-notification.css') }}">
 @endsection
 
 @section('content')
@@ -16,10 +17,10 @@
         </ul>
     @endif
 
-    <form action="{{ route('send.notification') }}" method="post">
+    <form class="send__form" action="{{ route('send.notification') }}" method="post">
     @csrf
-    <div>
-        <p>宛先</p>
+    <div class="mail__destination">
+        <p class="title">宛先</p>
         <select name="destination">
             <option value="all">全員</option>
             <option value="admin">管理者</option>
@@ -27,9 +28,9 @@
         </select>
     </div>
 
-    <div>
-        <p>本文</p>
-        <textarea name="message"></textarea>
+    <div class="mail__content">
+        <p class="title">本文</p>
+        <textarea class="mail__content" name="message"></textarea>
     </div>
     <div>
         <button type="submit">メール送信</button>

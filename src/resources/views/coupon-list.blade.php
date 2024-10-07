@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/coupon.css') }}">
+@endsection
+
 @section('content')
     <h1>クーポン一覧</h1>
 
@@ -22,7 +26,7 @@
             @foreach ($coupons as $coupon)
                 <tr>
                     <td>{{ $coupon->code }}</td>
-                    <td>{{ $coupon->discount }}</td>
+                    <td class="discount-column">{{ $coupon->discount }}</td>
                     <td>{{ $coupon->expires_at ? $coupon->expires_at->format('Y-m-d H:i') : 'なし' }}</td>
                     @if(auth()->user()->role_id == 1)
                         <td>

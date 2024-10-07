@@ -34,19 +34,19 @@
                 <input type="hidden" class="p-country-name" value="Japan">
                 <input type="hidden" id="item_id" name="item_id" value="{{ request()->item_id }}">
                 <div class="edit__address">
-                    <label>郵便番号</label>
+                    <label class="address__label">郵便番号</label><br />
                     <input type="text" id="post" class="p-postal-code" name="post" value="{{ old('post') }}">
                 </div>
                 <div class="edit__address">
-                    <label>住所</label>
+                    <label class="address__label">住所</label><br />
                     <input type="text" id="address" class="p-region p-locality p-street-address p-extended-address" name="address" value="{{ old('address') }}">
                 </div>
                 <div class="edit__address">
-                    <label>建物名</label>
-                    <input type="text" name="building" value="{{ old('building') }}">
+                    <label class="address__label">建物名</label><br />
+                    <input class="building" type="text" name="building" value="{{ old('building') }}">
                 </div>
                 <div class="submit__button">
-                    <input type="submit" value="更新する">
+                    <input class="submit__button-item" type="submit" value="更新する">
                 </div>
             </form>
         </div>

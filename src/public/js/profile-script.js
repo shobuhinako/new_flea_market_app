@@ -1,23 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
     // 画像ファイル選択処理
     var imageInput = document.getElementById('form-image');
-    var fileNameDisplay = document.getElementById('file-name');
     var profileImage = document.querySelector('.rounded__image');
 
     imageInput.addEventListener('change', function(event) {
         const input = event.target;
 
         if (input.files && input.files[0]) {
-            const fileName = input.files[0].name;
-            fileNameDisplay.textContent = fileName;
 
             const reader = new FileReader();
             reader.onload = function(e) {
                 profileImage.src = e.target.result;
             };
             reader.readAsDataURL(input.files[0]);
-        } else {
-            fileNameDisplay.textContent = '';
         }
     });
 

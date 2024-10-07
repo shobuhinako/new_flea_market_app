@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/create-coupon.css') }}">
+@endsection
+
 @section('content')
-    <h1>クーポン作成</h1>
+    <h1 class="title">クーポン作成</h1>
 
     @if ($errors->any())
         <div>
@@ -16,15 +20,15 @@
             <p>{{ session('success_message') }}</p>
     @endif
 
-    <form action="{{ route('create.coupon') }}" method="post">
+    <form class="create__coupon" action="{{ route('create.coupon') }}" method="post">
         @csrf
-        <div>
+        <div class="create__coupon-box">
             <label for="discount">割引率 (%)</label>
-            <input type="number" name="discount" id="discount" required min="1" max="100">
+            <input class="input__discount" type="number" name="discount" id="discount" required min="1" max="100">
         </div>
-        <div>
+        <div class="create__coupon-box">
             <label for="expires_at">有効期限</label>
-            <input type="date" name="expires_at" id="expires_at">
+            <input class="input__expires" type="date" name="expires_at" id="expires_at">
         </div>
         <button type="submit">作成</button>
     </form>

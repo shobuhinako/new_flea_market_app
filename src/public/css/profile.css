@@ -1,8 +1,10 @@
 .rounded__image {
-    width: 240px;
-    height: 240px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
+    margin-left: 35%;
+    background-color: gray;
 }
 
 input[type="file"] {
@@ -20,4 +22,59 @@ input[type="file"] {
 
 .custom-file-label:hover {
     opacity: 0.8;
+}
+
+.top__content {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.profile__image {
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.file-input-wrapper {
+    margin-left: 50px;
+    margin-top: 60px;
+}
+
+.custom-file-label {
+    background-color: white;
+    border: 1px solid #ff6347;
+    color: #ff6347;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+.edit__profile-box {
+    margin-left: 35%;
+    margin-bottom: 15px;
+}
+
+.submit__button {
+    margin-left: 35%;
+    margin-top: 30px;
+}
+
+.submit__button-item {
+    width: 50%;
+    background-color: #ff6345;
+    color: white;
+    border: none;
+    height: 25px;
+    font-weight: bold;
+}
+
+.edit__label {
+    font-weight: bold;
+}
+
+.edit__box {
+    width: 50%;
+    height: 25px;
 }

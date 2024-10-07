@@ -2,3 +2,53 @@
     background-color: black;
     height: 50px;
 }
+
+.address__label {
+    font-weight: bold;
+}
+
+.title__message {
+    text-align: center;
+}
+
+.p-postal-code {
+    text-align: center;
+}
+
+.edit__address {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.address__label {
+    text-align: left;
+    display: block;
+    margin-left: 370px;
+}
+
+input[type="text"] {
+    width: 40%;
+    border: 1px solid black;
+    display: block;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.submit__button {
+    text-align: center;
+}
+
+.submit__button-item {
+    background-color: #ff6347;
+    border: none;
+    color: white;
+    width: 41%;
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+#post {
+    text-align: left;
+}

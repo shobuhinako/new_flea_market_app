@@ -25,7 +25,7 @@
 @csrf
 @method('PUT')
     <div class="profile__image">
-        <img class="rounded__image" src="{{ $user->profile && $user->profile->image ? asset('storage/images/' . $user->profile->image) : '' }}" alt="プロフィール画像">
+        <img class="rounded__image" src="{{ $user->profile && $user->profile->image ? asset('storage/images/' . $user->profile->image) : '' }}">
         <div class="file-input-wrapper">
             <label class="custom-file-label" for="form-image">画像を選択する</label>
             <input type="file" id="form-image" name="image" />
@@ -33,19 +33,23 @@
         <div class="file-name" id="file-name"></div>
     </div>
     <div class="edit__profile-box">
-        <label>ユーザー名<input type="text" name="name" /></label>
+        <label class="edit__label">ユーザー名</label><br />
+        <input class="edit__box" type="text" name="name" />
     </div>
     <div class="edit__profile-box">
-        <label>郵便番号<input type="text"  id="postcode" name="post" /></label>
+        <label class="edit__label">郵便番号</label><br />
+        <input class="edit__box" type="text"  id="postcode" name="post" />
     </div>
     <div class="edit__profile-box">
-        <label>住所<input type="text" id="address" name="address" /></label>
+        <label class="edit__label">住所</label><br />
+        <input class="edit__box" type="text" id="address" name="address" />
     </div>
     <div class="edit__profile-box">
-        <label>建物名<input type="text" name="building" /></label>
+        <label class="edit__label">建物名</label><br />
+        <input class="edit__box" type="text" name="building" />
     </div>
     <div class="submit__button">
-        <input type="submit" value="更新する" />
+        <input class="submit__button-item" type="submit" value="更新する" />
     </div>
 </form>
 

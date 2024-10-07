@@ -1,7 +1,14 @@
 .item__image {
-    width: 240px;
-    height: 240px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
 }
 
 input[type="file"] {
@@ -10,13 +17,126 @@ input[type="file"] {
 
 .custom-file-label {
     padding: 5px 20px;
-    color: #ffffff;
-    background-color: #295d72;
+    color: #ff6345;
+    background-color: white;
     cursor: pointer;
     border-radius: 10px;
     transition: .3s;
+    border: 1px solid #ff6345;
+    text-align: center;
 }
 
 .custom-file-label:hover {
     opacity: 0.8;
+}
+
+.top__content {
+    text-align: center;
+}
+
+.upload__image-label {
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 38%;
+}
+
+.upload__image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    position: relative;
+    margin-bottom: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+    height: 250px;
+    overflow: hidden;
+}
+
+/* 画像を選択するボタンのCSS */
+.file-input-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.image-preview-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item__detail-label {
+    margin-left: 38%;
+    margin-bottom: 5px;
+    color: gray;
+}
+
+.line {
+    width: 300px;
+    border-top: 1px solid gray;
+    margin-bottom: 30px;
+    margin-left: 38%;
+}
+
+.label {
+    margin-left: 38%;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.category {
+    margin-left: 38%;
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+.condition {
+    margin-left: 38%;
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+.item__description-label {
+    margin-left: 38%;
+    margin-bottom: 5px;
+    color: gray;
+}
+
+.text__box {
+    margin-left: 38%;
+    width: 300px;
+}
+
+.text__area {
+    margin-left: 38%;
+}
+
+.price-input {
+    margin-left: 38%;
+    width: 300px;
+}
+
+.submit__button {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.submit__button-item {
+    width: 300px;
+    background-color:#ff6345;
+    color: white;
+    border: none;
+    height: 30px;
 }

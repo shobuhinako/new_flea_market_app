@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/payment.css') }}">
 @endsection
 
 @section('content')
     @if($paymentMethod === 'card')
-        <form action="{{route('stripe.charge')}}" method="post">
+        <form class="card__payment" action="{{route('stripe.charge')}}" method="post">
         @csrf
         <input type="hidden" name="item_id" value="{{ $item->id }}">
         <input type="hidden" name="discounted_price" value="{{ $discountedPrice }}">
@@ -23,7 +24,7 @@
         </script>
         </form>
     @elseif($paymentMethod === 'bank_transfer')
-        <div id="bank-transfer-info">
+        <div class="bank__payment" id="bank-transfer-info">
             <p>以下の振込先にお振込みください。</p>
             <p>ご登録のメールアドレスに振込先情報をお送りします</p>
             <p>金融機関コード: 1234</p>
@@ -34,12 +35,12 @@
             <p>口座番号: 1234567</p>
             <p>口座名義: カ）コーチテックフリマ</p>
         </div>
-        <form action="{{ route('payment.sendBankTransferInfo') }}" method="post">
+        <form class=" button" action="{{ route('payment.sendBankTransferInfo') }}" method="post">
         @csrf
             <input type="hidden" name="item_id" value="{{ $item->id }}">
             <input type="hidden" name="discounted_price" value="{{ $discountedPrice }}">
             <input type="hidden" name="coupon_id" value="{{ $couponId ?? '' }}">
-            <button type="submit" class="btn btn-primary">購入する</button>
+            <input type="submit" class="purchase__button" value="購入する">
         </form>
     @endif
 @endsection

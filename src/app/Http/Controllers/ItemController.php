@@ -152,7 +152,8 @@ class ItemController extends Controller
 
     public function showComment($item_id)
     {
-        $item = Item::with('comments.user')->findOrFail($item_id);
+        $item = Item::with('comments.user', 'favoritedBy', 'comments')->findOrFail($item_id);
+
         return view ('comment', compact('item_id', 'item'));
     }
 

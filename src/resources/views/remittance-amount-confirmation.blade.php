@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/remittance-amount.css') }}">
+@endsection
+
+
 @section('content')
     <div class="container">
         <h2>送金額確認</h2>

@@ -1,0 +1,21 @@
+.rating__comment {
+    margin-left: 50px;
+}
+
+.rating__transaction-content {
+    margin-left: 40px;
+}
+
+th {
+    padding: 10px;
+}
+
+.transaction__complete-button {
+    margin-top: 20px;
+    margin-left: 50px;
+    width: 200px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

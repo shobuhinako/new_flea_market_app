@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/transaction-rate.css') }}">
 @endsection
 
 @section('content')

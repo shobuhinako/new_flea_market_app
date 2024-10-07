@@ -1,0 +1,132 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    /* 子要素の間隔を均等に配置 */
+    align-items: center;
+    /* 子要素を縦方向に中央揃え */
+    padding: 5px 10px;
+    height: 50px;
+    background-color: black;
+    /* 背景色を変更 */
+    margin-bottom: 50px;
+}
+
+.header__title {
+    flex: 1;
+}
+
+.header__title-content{
+    color: white;
+    text-decoration: none;
+}
+
+.search__form {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.search__form input {
+    width: 100%;
+    max-width: 300px;
+    /* 検索ボックスの幅を調整 */
+    padding: 5px;
+}
+
+.header__menu {
+    flex: 1;
+}
+
+.header__menu-bar {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    /* リスト項目間の隙間を調整 */
+    margin: 0;
+    padding: 0;
+}
+
+.header__menu-item {
+    display: flex;
+    align-items: center;
+}
+
+/* ログアウトボタンのスタイル */
+.logout__button {
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    /* 枠なし */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout__button:hover {
+    background-color: #333;
+    /* ホバー時に少し明るく */
+}
+
+/* ログインボタンのスタイル */
+.login__button {
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    /* 枠なし */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login__button:hover {
+    background-color: #333;
+    /* ホバー時に少し明るく */
+}
+
+/* マイページボタンのスタイル */
+.mypage__button {
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    /* 枠なし */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mypage__button:hover {
+    background-color: #333;
+    /* ホバー時に少し明るく */
+}
+
+/* 会員登録ボタンのスタイル */
+.register__button {
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    /* 枠なし */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register__button:hover {
+    background-color: #333;
+    /* ホバー時に少し明るく */
+}
+
+/* 出品ボタンのスタイル */
+.display__item-button {
+    padding: 5px 10px;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    /* 枠あり */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.display__item-button:hover {
+    background-color: #f0f0f0;
+    /* ホバー時に背景を少し明るく */
+}

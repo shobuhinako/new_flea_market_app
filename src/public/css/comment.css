@@ -4,3 +4,149 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+.user__image-alt{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: gray;
+    display: inline-block;
+}
+
+.item__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.item__image {
+    flex: 1;
+    max-width: 50%;
+    text-align: center;
+}
+
+.item__name {
+    margin-left: 70px;
+}
+
+.brand__name {
+    margin-left: 70px;
+}
+
+.price {
+    margin-left: 70px;
+}
+
+.item__detail {
+    flex: 1;
+    max-width: 50%;
+}
+
+.item__image-content {
+    width: 60%;
+    height: auto;
+}
+
+.favorite {
+    display: flex;
+    margin-bottom: 30px;
+    margin-left: 70px;
+}
+
+.favorite__button {
+    border: none;
+    background: none;
+}
+
+.comment__button{
+    border: none;
+    background: none;
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.comment--left {
+    justify-content: flex-start;
+}
+
+.comment--right {
+    justify-content: flex-end;
+}
+
+.comment__details {
+    display: flex;
+}
+
+.comment--right .comment__details {
+    text-align: right;
+}
+
+.comment--left .comment__details {
+    text-align: left;
+}
+
+.user__info {
+    margin-right: 5px;
+}
+
+.comment--right .user__info {
+    order: 2;
+    /* ログインユーザーの画像を右側に */
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.user__name {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.comment__form {
+    margin-top: 50px;
+    margin-left: 70px;
+}
+
+.submit__button-item {
+    width: 70%;
+    background-color: #ff6345;
+    color: white;
+    border: none;
+    height: 25px;
+    font-weight: bold;
+}
+
+.submit__button {
+    margin-top: 10px;
+}
+
+.comment__text {
+    width: 70%;
+}
+
+.comment__section {
+    width: 60%;
+    margin-left: 70px;
+}
+
+.delete__button {
+    text-align: right;
+}
+
+.favorite__count {
+    margin-left: 10px;
+    font-size: 10px;
+}
+
+.comment__count {
+    margin-left: 10px;
+    font-size: 10px;
+}
+
+

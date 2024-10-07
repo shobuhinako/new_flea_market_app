@@ -1,3 +1,68 @@
+.item__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.item__image {
+    flex: 1;
+    max-width: 50%;
+    text-align: center;
+}
+
+.item__detail {
+    flex: 1;
+    max-width: 50%;
+}
+
+.item__image img{
+    width: 60%;
+    height: auto;
+}
+
+.favorite__comment {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.favorite__button {
+    border: none;
+    background: none;
+}
+
+.comment__button {
+    border: none;
+    background: none;
+}
+
+.purchase__button-item {
+    background-color: #ff6347;
+    border: none;
+    color: white;
+    width: 50%;
+    cursor: pointer;
+}
+
+.purchase__button {
+    width: 50%;
+}
+
+.item__description {
+    margin-bottom: 1px;
+}
+
+.item__information {
+    margin-top: 30px;
+    margin-bottom: 1px;
+}
+
+.item__information-table td {
+    padding-left: 10px;
+}
+
 /* power__seller-tag のスタイル */
 .power__seller-tag {
     background-color: #FFD700;
@@ -10,11 +75,12 @@
     margin-left: 10px;
     position: relative;
     display: inline-block;
+    font-size: 13px;
 }
 
 /* info-icon のスタイル */
 .info-icon {
-    font-size: 16px;
+    font-size: 13px;
     cursor: pointer;
     margin-left: 5px;
     display: inline-block;
@@ -47,9 +113,20 @@
     /* アイコンの左に揃える */
     white-space: nowrap;
     /* テキストの折り返しを防ぐ */
+    font-size: 13px;
 }
 
 /* info-icon のホバー時に info-popup を表示 */
 .info-icon:hover+.info-popup {
     display: block;
+}
+
+.favorite__count {
+    margin-left: 5px;
+    font-size: 10px;
+}
+
+.comment__count {
+    margin-left: 5px;
+    font-size: 10px;
 }

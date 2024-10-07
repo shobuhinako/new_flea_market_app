@@ -1,0 +1,16 @@
+.register__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.main__form {
+    text-align: center;
+}
+
+.register__content-item {
+    margin-bottom: 20px;
+    width: 30%;
+    padding: 5px;
+}

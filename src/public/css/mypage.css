@@ -16,11 +16,12 @@
     margin-left: 10px;
     position: relative;
     display: inline-block;
+    font-size: 13px;
 }
 
 /* info-icon のスタイル */
 .info-icon {
-    font-size: 16px;
+    font-size: 13px;
     cursor: pointer;
     margin-left: 5px;
     display: inline-block;
@@ -53,6 +54,7 @@
     /* アイコンの左に揃える */
     white-space: nowrap;
     /* テキストの折り返しを防ぐ */
+    font-size: 13px;
 }
 
 /* info-icon のホバー時に info-popup を表示 */
@@ -65,6 +67,87 @@
 }
 
 .tablinks.active {
-    background-color: #ccc;
+    color: red;
     /* タブがアクティブな時のスタイルを設定 */
+}
+
+.profile {
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.profile__image {
+    margin-left: 15%;
+}
+
+.top__content {
+    margin-top: 80px;
+    margin-left: 10px;
+}
+
+.coupon__button {
+    margin-left: 10px;
+    margin-top: 80px;
+    background-color: white;
+    border: 1px solid #ff6347;
+    color: #ff6347;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.edit__profile-button {
+    margin-top: 80px;
+    margin-left: 200px;
+    background-color: white;
+    border: 1px solid #ff6347;
+    color: #ff6347;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.tablinks {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.tablinks:hover {
+    color: red;
+}
+
+.display__tab {
+    margin-left: 150px;
+}
+
+.purchase__tab {
+    margin-left: 50px;
+}
+
+.tabs {
+    display: flex;
+}
+
+.line {
+    width: 100%;
+    border-top: 1px solid black;
+    margin-bottom: 50px;
+    margin-top: 5px;
+}
+
+.card-img-top {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 150px;
+}
+
+.col-md-4 {
+    flex: 1 0 22%;
+    max-width: 22%;
 }

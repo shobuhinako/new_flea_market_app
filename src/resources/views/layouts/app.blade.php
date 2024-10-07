@@ -16,7 +16,7 @@
 <body>
     <header class="header">
         <h1 class="header__title">
-            <a href="{{ route('index') }}">COACHTECH</a>
+            <a class="header__title-content" href="{{ route('index') }}">COACHTECH</a>
         </h1>
 
         <form class="search__form" action="{{ route('search') }}" method="get">

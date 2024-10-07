@@ -4,4 +4,73 @@
     object-fit: cover;
 }
 
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 45px;
+}
+
+.col-md-4 {
+    flex: 1 0 20%;
+    /* 3列にする */
+    max-width: 20%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body {
+    flex: 1;
+}
+
+.line {
+    width: 100%;
+    border-top: 1px solid black;
+    margin-bottom: 50px;
+    margin-top: 10px;
+}
+
+.tablinks {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.tablinks:hover {
+    color: red;
+}
+
+.filter__button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.filter__button:hover {
+    color: red;
+}
+
+.tablinks.active {
+    color: red;
+    /* タブがアクティブな時のスタイルを設定 */
+}
+
+.card-text {
+    color: red;
+    font-size: 13px;
+}
+
+.filters {
+    font-size: 13px;
+}
+
+
+
+
+
+
 
