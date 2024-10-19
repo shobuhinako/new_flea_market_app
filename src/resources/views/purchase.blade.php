@@ -53,8 +53,8 @@
                 <form action="{{ route('apply.coupon') }}" method="post">
                 @csrf
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
-                    <input type="text" id="coupon-code" name="coupon_code" placeholder="クーポンコードを入力">
-                    <button type="submit">適用</button>
+                    <input class="coupon__code" type="text" id="coupon-code" name="coupon_code" placeholder="クーポンコードを入力">
+                    <button class="submit__button" type="submit">適用</button>
                 </form>
 
                 @if ($errors->any())
@@ -71,7 +71,7 @@
                     <form action="{{ route('clear.coupon') }}" method="post">
                         @csrf
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
-                        <button type="submit">クーポンをクリア</button>
+                        <button class="submit__button" type="submit">クーポンをクリア</button>
                     </form>
                 @endif
             </div>
@@ -89,7 +89,7 @@
                             <label>
                                 <input type="radio" name="payment-method" value="bank_transfer"> 銀行振込
                             </label>
-                            <button type="confirm__button" id="confirm-payment-method">決定</button>
+                            <button class="confirmation__button" type="confirm__button" id="confirm-payment-method">決定</button>
                         </div>
                     </div>
                     <div class="button">

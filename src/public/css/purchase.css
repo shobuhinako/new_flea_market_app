@@ -148,6 +148,148 @@
     position: absolute;
 }
 
+@media (max-width: 768px) {
+    .item__image-content {
+        width: 150px;
+        height: 150px;
+    }
+
+    .item__image {
+        margin-right: 10px;
+        flex: none;
+    }
+
+    .payment__content-left {
+        margin-left: 30px;
+    }
+
+    .payment__content-right {
+        margin-left: 30px;
+    }
+
+    .item__name {
+        font-size: 10px;
+    }
+
+    .item__price {
+        font-size: 10px;
+    }
+
+    .purchase__content {
+        border: 1px solid #a9a9a9;
+        /* テーブルの外枠にだけ枠線を追加 */
+        border-collapse: collapse;
+        /* セルの間に余白を作らない */
+        width: 80%;
+        /* テーブルの幅を100%に設定 */
+        margin-bottom: 30px;
+    }
+
+    .table__item-name {
+        font-size: 8px;
+    }
+
+    .table__item {
+        font-size: 8px;
+    }
+
+    .payment__content-right {
+        flex: 1;
+        margin-left: 10px;
+    }
+
+    .payment__content {
+        width: 100%;
+    }
+
+    .table__item-name,
+    .table__item {
+        padding: 30px 5px;
+        border: none;
+    }
+
+    .item__information {
+        flex-direction: column;
+    }
+
+    .shipping__address {
+        font-size: 15px;
+    }
+
+    .coupon__title {
+        font-size: 15px;
+    }
+
+    .payment__options {
+        font-size: 15px;
+    }
+
+    .address__details {
+        font-size: 10px;
+    }
+
+    .change__button-item {
+        border: none;
+        background-color: white;
+        color: #4169e1;
+        cursor: pointer;
+        font-size: 10px;
+    }
+
+    .change__button {
+        /* position: absolute;
+        margin-left: 64%;
+        margin-top: 60px; */
+        margin-left: 0;
+        /* 左の余白をリセット */
+        margin-top: 5px;
+        /* 上に少し余白を追加 */
+        text-align: left;
+        position: static;
+    }
+
+    .coupon__code {
+        font-size: 10px;
+    }
+
+    .submit__button {
+        font-size: 10px;
+    }
+
+    .default__option {
+        font-size: 10px;
+    }
+
+    .button__item {
+        font-size: 10px;
+    }
+
+    .selection {
+        font-size: 10px;
+    }
+
+    .confirmation__button {
+        font-size: 10px;
+    }
+
+    .purchase__button {
+        background-color: #ff6347;
+        border: none;
+        color: white;
+        width: 80%;
+        cursor: pointer;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        transition: background-color 0.3s ease;
+        font-size: 13px;
+    }
+
+    .address__content {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 
 
 

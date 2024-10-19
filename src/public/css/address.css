@@ -1,3 +1,9 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .header{
     background-color: black;
     height: 50px;
@@ -51,4 +57,27 @@ input[type="text"] {
 
 #post {
     text-align: left;
+}
+
+@media (max-width: 768px) {
+    input[type="text"] {
+        width: 80%;
+        /* 入力フィールドの幅を広げる */
+    }
+
+    .submit__button-item {
+        width: 83%;
+        /* 送信ボタンの幅を広げる */
+    }
+
+    #post {
+        text-align: center;
+        /* テキストを中央揃えに */
+    }
+
+    .address__label {
+        text-align: left;
+        display: block;
+        margin-left: 8%;
+    }
 }

@@ -151,3 +151,93 @@
     flex: 1 0 22%;
     max-width: 22%;
 }
+
+
+@media (max-width: 768px) {
+
+    /* カラムのレイアウトを1列にする */
+    .row {
+        margin-left: 0;
+        justify-content: center;
+        /* カードを中央に揃える */
+    }
+
+    .col-md-4 {
+        flex: 1 0 45%;
+        /* 1列表示 */
+        max-width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* 画像サイズを調整 */
+    .card-img-top,
+    .rounded__image {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+        /* 画像を中央に配置 */
+    }
+
+    /* プロフィールのレイアウトを変更 */
+    .profile {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .profile__image {
+        margin-left: 0;
+        margin-bottom: 5px;
+    }
+
+    .coupon__button {
+        margin-left: 10px;
+        margin-top: 10px;
+        background-color: white;
+        border: 1px solid #ff6347;
+        color: #ff6347;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .edit__profile-button {
+        margin-top: 80px;
+        margin-left: 10px;
+        background-color: white;
+        border: 1px solid #ff6347;
+        color: #ff6347;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    /* タブリンクの調整 */
+    .tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .display__tab,
+    .purchase__tab {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    /* info-icon のサイズを調整 */
+    .info-icon {
+        font-size: 12px;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+    }
+
+    .info-popup {
+        font-size: 10px;
+        max-width: 300px;
+    }
+
+    /* その他要素の調整 */
+    .line {
+        margin-bottom: 20px;
+    }
+}

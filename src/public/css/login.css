@@ -2,6 +2,11 @@
     background-color: black;
     width: 100%;
     height: 50px;
+    margin: 0;
+}
+
+.header__title {
+    margin: 0;
 }
 
 .header__title-text {
@@ -53,4 +58,42 @@
 
 .register__link {
     text-decoration: none;
+}
+
+
+@media (max-width: 768px) {
+    .header {
+        height: auto;
+        /* 高さを自動調整 */
+        padding: 10px;
+        /* パディングを追加 */
+    }
+
+    .header__title {
+        text-align: left;
+        /* タイトルを中央揃え */
+        margin: 10px 0;
+        /* タイトルの上下にマージンを追加 */
+    }
+
+    /* テキストボックスの幅を調整して画面幅に適応 */
+    .text__box {
+        width: 100%;
+        max-width: 300px;
+        /* 最大幅を300pxに制限 */
+        margin: 0 auto;
+        /* 中央揃え */
+    }
+
+    /* ログインボタンの幅を調整 */
+    .login__button-item {
+        width: 100%;
+        max-width: 300px;
+        /* 最大幅を300pxに制限 */
+    }
+
+    /* リンクを中央揃え */
+    .link {
+        text-align: center;
+    }
 }

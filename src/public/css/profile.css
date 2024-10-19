@@ -78,3 +78,53 @@ input[type="file"] {
     width: 50%;
     height: 25px;
 }
+
+/* 768px以下のデバイス向けのレスポンシブデザイン */
+@media (max-width: 768px) {
+
+    /* プロフィール画像のサイズと中央揃え */
+    .rounded__image {
+        width: 120px;
+        height: 120px;
+        margin-left: 1%;
+    }
+
+    /* コンテンツの中央揃えとサイズ調整 */
+    .top__content {
+        font-size: 18px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .profile__image {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    /* ファイル入力ボタンの調整 */
+    .file-input-wrapper {
+        margin-left: 1%;
+        margin-top: 20px;
+    }
+
+    /* 編集ボックスとボタンの幅を広げ、中央揃え */
+    .edit__profile-box,
+    .submit__button {
+        margin-left: 0;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .submit__button-item,
+    .edit__box {
+        width: 80%;
+        /* 幅を80%にして画面幅に適応 */
+        margin: 0 auto;
+    }
+
+    /* ラベルのサイズ調整 */
+    .edit__label {
+        font-size: 14px;
+    }
+}

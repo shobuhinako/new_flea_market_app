@@ -6,3 +6,18 @@ th,td {
     padding: 10px 20px;
     text-align: left;
 }
+
+@media (max-width: 768px) {
+    .container {
+        margin-left: 20px;
+        /* マージンを小さくする */
+    }
+
+    th,
+    td {
+        padding: 5px 10px;
+        /* パディングを小さくする */
+        text-align: left;
+        font-size: 9px;
+    }
+}

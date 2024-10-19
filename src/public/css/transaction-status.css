@@ -27,7 +27,7 @@
     padding: 5px;
 }
 
-.transaction__comment-title {
+/* .transaction__comment-title {
     margin-left: 20px;
     margin-top: 10px;
     font-weight: bold;
@@ -36,6 +36,37 @@
 
 .transaction__comment-content {
     margin-left: 20px;
+} */
+
+.transaction__comment-content {
+    text-align: center;
+    /* テキストを中央揃え */
+    margin-left: 0;
+    /* 左余白をリセット */
+    margin-right: 0;
+    /* 右余白をリセット */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.transaction__comment-title {
+    margin-top: 20px;
+    margin-left: 0%;
+}
+
+/* ボタンを中央揃え */
+.comment__submit,
+.transaction__complete-button {
+    width: 305px;
+    /* 幅を固定（必要に応じて調整） */
+    margin: 10px auto;
+    /* 中央に揃える */
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: block;
+    /* ブロック要素にして幅を全体で使う */
 }
 
 .transaction__complete-submit {
@@ -54,7 +85,7 @@
     width: 50%;
 }
 
-.comment__submit {
+/* .comment__submit {
     margin-top: 10px;
     width: 305px;
     background-color: #ff6347;
@@ -71,4 +102,69 @@
     color: white;
     border: none;
     cursor: pointer;
+} */
+
+/* 768px以下のデバイス向けのレスポンシブデザイン */
+@media (max-width: 768px) {
+
+    /* 画像のサイズとレイアウトを調整 */
+    .item__image-content {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto;
+    }
+
+    /* 画像の中央揃え */
+    .item__image {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    /* 詳細セクションの中央揃え */
+    .item__detail {
+        margin-left:40px;
+        text-align: center;
+    }
+
+    /* テーブルの幅を画面にフィットさせる */
+    .item__detail-content {
+        width: 100%;
+    }
+
+    /* コメントやタイトルの余白を調整 */
+    .transaction__comment-content {
+        text-align: center;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* フレックスレイアウトを縦方向に変更 */
+    .transaction {
+        flex-direction: column;
+    }
+
+    .transaction__left,
+    .transaction-right {
+        width: 100%;
+        /* それぞれ100%幅にする */
+    }
+
+    .comment {
+        margin-left: 40px;
+    }
+
+    .comment__submit,
+    .transaction__complete-button {
+        width: 80%;
+        /* 幅を画面幅の90%に設定 */
+        margin: 5px auto;
+        /* 中央揃え */
+    }
+
+    .transaction__comment-title {
+        margin-top: 30px;
+        margin-left: 10%;
+    }
 }

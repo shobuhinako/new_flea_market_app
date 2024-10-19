@@ -13,9 +13,14 @@
 
 .mail__content {
     margin-bottom: 60px;
-}
-
-.mail__content {
     width: 60%;
     height: 100px;
+}
+
+@media (max-width: 768px) {
+    .mail__content {
+        margin-bottom: 60px;
+        width: 70%;
+        height: 100px;
+    }
 }

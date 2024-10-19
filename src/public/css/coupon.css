@@ -6,3 +6,30 @@ th, td {
 .discount-column {
     text-align: center;
 }
+
+@media (max-width: 768px) {
+
+    /* テーブル全体のパディングを少なくして表示を調整 */
+    th,
+    td {
+        padding: 5px 10px;
+    }
+
+    /* 列の幅が狭い画面にフィットするように、中央揃えに変更 */
+    th,
+    td {
+        text-align: center;
+    }
+
+    /* ディスカウント列のテキストの配置を調整 */
+    .discount-column {
+        text-align: left;
+    }
+
+    /* 必要に応じて、テーブルを横スクロール可能にする */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}

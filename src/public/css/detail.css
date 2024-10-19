@@ -122,11 +122,61 @@
 }
 
 .favorite__count {
-    margin-left: 5px;
+    margin-left: 6px;
     font-size: 10px;
 }
 
 .comment__count {
-    margin-left: 5px;
+    margin-left: 6px;
     font-size: 10px;
+}
+
+@media (max-width: 768px) {
+    .info-popup {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        max-width: 350px;
+        z-index: 1000;
+        top: 100%;
+        /* アイコンの下に表示 */
+        left: 0;
+        /* アイコンの左に揃える */
+        white-space: nowrap;
+        /* テキストの折り返しを防ぐ */
+        font-size: 7px;
+    }
+
+    .item__description-content {
+        font-size: 10px;
+    }
+
+    th,
+    td {
+        font-size: 10px;
+    }
+
+    .brand__name {
+        font-size: 12px;
+    }
+
+    .seller__name {
+        font-size: 12px;
+    }
+
+    .power__seller-tag {
+        font-size: 12px;
+    }
+
+    .price {
+        font-size: 12px;
+    }
+
+    .card-text {
+        font-size: 12px;
+    }
 }

@@ -34,7 +34,7 @@
             </div>
             <div class="price">￥{{ $item->price }}(値段)</div>
             @if($item->isSoldOut())
-                <p class="card-text text-danger">売り切れ</p>
+                <div class="card-text text-danger">売り切れ</div>
             @endif
 
             <div class="favorite__comment">

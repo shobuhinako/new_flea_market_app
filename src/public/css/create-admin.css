@@ -14,3 +14,11 @@
     width: 30%;
     padding: 5px;
 }
+
+@media (max-width: 768px) {
+    .register__content-item {
+        margin-bottom: 20px;
+        width: 35%;
+        padding: 5px;
+    }
+}

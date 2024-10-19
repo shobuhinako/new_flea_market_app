@@ -130,3 +130,54 @@
     background-color: #f0f0f0;
     /* ホバー時に背景を少し明るく */
 }
+
+
+
+@media (max-width: 768px) {
+
+    /* ヘッダーの高さを少し小さくする */
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        height: auto;
+    }
+
+    /* タイトルは中央揃えに */
+    .header__title {
+        text-align: left;
+        margin-bottom: 10px;
+    }
+
+    /* 検索フォームの幅を調整 */
+    .search__form {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* 検索ボックスの幅を画面幅に合わせて調整 */
+    .search__form input {
+        max-width: none;
+        width: 100%;
+    }
+
+    /* メニューは縦方向に並べる */
+    .header__menu-bar {
+        flex-direction: row;
+        gap: 5px;
+    }
+
+    .header__menu-item {
+        justify-content: center;
+    }
+
+    /* ボタンを画面幅に合わせて広げる */
+    .logout__button,
+    .login__button,
+    .mypage__button,
+    .register__button,
+    .display__item-button {
+        width: 100%;
+        text-align: center;
+    }
+}

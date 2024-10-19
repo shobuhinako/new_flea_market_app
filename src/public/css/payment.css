@@ -18,3 +18,23 @@
     margin-left: 50px;
     margin-top: 30px;
 }
+
+@media (max-width: 768px) {
+    .bank__payment {
+        margin-left: 30px;
+        font-size: 13px;
+    }
+
+    .purchase__button {
+        background-color: #ff6347;
+        color: white;
+        border: none;
+        width: 30%;
+        cursor: pointer;
+    }
+
+    .button {
+        margin-left: 30px;
+        margin-top: 30px;
+    }
+}
