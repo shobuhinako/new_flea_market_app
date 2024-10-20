@@ -94,15 +94,6 @@
                     </div>
                     <div class="button">
                         <button type="submit" class="button__item" type="button" id="change-payment-method">変更する</button>
-                        <!-- <div class="selection" id="payment-method-selection" style="display: none;">
-                            <label>
-                                <input type="radio" name="payment-method" value="card" checked> クレジットカード
-                            </label>
-                            <label>
-                                <input type="radio" name="payment-method" value="bank_transfer"> 銀行振込
-                            </label>
-                            <button type="confirm__button" id="confirm-payment-method">決定</button>
-                        </div> -->
                     </div>
                 </div>
             </div>

@@ -27,17 +27,6 @@
     padding: 5px;
 }
 
-/* .transaction__comment-title {
-    margin-left: 20px;
-    margin-top: 10px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.transaction__comment-content {
-    margin-left: 20px;
-} */
-
 .transaction__comment-content {
     text-align: center;
     /* テキストを中央揃え */
@@ -84,25 +73,6 @@
 .transaction-right {
     width: 50%;
 }
-
-/* .comment__submit {
-    margin-top: 10px;
-    width: 305px;
-    background-color: #ff6347;
-    color: white;
-    border: none;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
-
-.transaction__complete-button {
-    width: 305px;
-    margin-left: 17px;
-    background-color: #ff6347;
-    color: white;
-    border: none;
-    cursor: pointer;
-} */
 
 /* 768px以下のデバイス向けのレスポンシブデザイン */
 @media (max-width: 768px) {
