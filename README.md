@@ -63,10 +63,8 @@
     4. .env.exampleファイルから.envを作成し、環境変数を変更
     5. アプリケーションキーの生成
        php artisan key:generate
-    6. データベースのマイグレーション
-       php artisan migrate
-    7. データベースのシーディング
-       php artisan db:seed
+    6. シンボリックリンクの作成
+       php artisan storage:link
 
 ## テストアカウント
 
