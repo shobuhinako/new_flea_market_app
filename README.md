@@ -1,8 +1,9 @@
 # フリマアプリ
 
     フリマサービス
-    <img width="1098" alt="スクリーンショット 2024-08-22 12 40 36" src="https://github.com/user-attachments/assets/48ab9a5f-ab4f-492f-bd6f-64875dd63587">
-    画像はリンク（https://github.com/user-attachments/assets/48ab9a5f-ab4f-492f-bd6f-64875dd63587）から確認ください。
+    <img width="1274" height="707" alt="Image" src="https://github.com/user-attachments/assets/4a879061-e32e-4b5a-b51d-faf05cd92d3a" />
+    画像はリンク(https://github.com/shobuhinako/new_flea_market_app/issues/2#issue-3369666907)から確認ください。
+    
 
 ## 目的
 
