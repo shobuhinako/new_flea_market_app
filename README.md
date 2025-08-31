@@ -67,6 +67,10 @@
     6. シンボリックリンクの作成
        php artisan storage:link
 
+## 画面URL
+http://localhost/
+(環境構築後にこちらのURLからログイン)
+
 ## テストアカウント
 
     パスワードはすべて共通でpassword
@@ -78,5 +82,3 @@
 
     1. docker-compose exec php bash
     2. php artisan test
-
-# new_flea_market_app
